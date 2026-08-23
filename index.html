@@ -1,1 +1,476 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thermae Son Planning</title>
 
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f6fa;
+    color: #17212b;
+}
+
+header {
+    background: #1769aa;
+    color: white;
+    padding: 24px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+header p {
+    margin: 7px 0 0;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 15px;
+}
+
+button {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background: #1769aa;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.secondary {
+    background: #e7eef5;
+    color: #17212b;
+}
+
+.danger {
+    background: #c62828;
+}
+
+.timer {
+    font-size: 38px;
+    font-weight: bold;
+    text-align: center;
+    margin: 25px 0;
+}
+
+.stat {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.small {
+    color: #68737d;
+    font-size: 14px;
+}
+
+.hidden {
+    display: none;
+}
+
+.back {
+    width: auto;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+}
+
+.service {
+    border: 1px solid #dce3ea;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+}
+
+.day {
+    min-height: 85px;
+    border: 1px solid #dce3ea;
+    border-radius: 10px;
+    padding: 8px;
+    background: white;
+}
+
+.day strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.available {
+    background: #e5f6e9;
+}
+
+.unavailable {
+    background: #fde8e8;
+}
+
+footer {
+    text-align: center;
+    color: #68737d;
+    padding: 25px;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    .calendar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .timer {
+        font-size: 30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Thermae Son Planning</h1>
+    <p>Planning en urenregistratie</p>
+</header>
+
+<main class="container">
+
+    <section id="home">
+        <div class="card">
+            <h2>Overzicht</h2>
+            <p>Welkom bij Thermae Son Planning.</p>
+            <p class="small">Gemaakt door Job van der Kruijssen</p>
+        </div>
+
+        <div class="grid">
+            <button onclick="showPage('availability')">
+                Beschikbaarheid
+            </button>
+
+            <button onclick="showPage('schedule')">
+                Mijn rooster
+            </button>
+
+            <button onclick="showPage('hours')">
+                Uren bijhouden
+            </button>
+
+            <button onclick="showPage('correction')">
+                Urenoverzicht
+            </button>
+        </div>
+
+        <div class="card" style="margin-top:16px;">
+            <h2>Mijn dienst</h2>
+
+            <div id="notWorking">
+                <p>Je hebt momenteel geen lopende dienst.</p>
+                <button onclick="startService()">START DIENST</button>
+            </div>
+
+            <div id="working" class="hidden">
+                <p><strong>Dienst bezig</strong></p>
+
+                <p class="small">Starttijd</p>
+                <p id="startTime" class="stat"></p>
+
+                <div id="timer" class="timer">00:00:00</div>
+
+                <button class="danger" onclick="stopService()">
+                    STOP DIENST
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="availability" class="hidden">
+        <button class="secondary back" onclick="showPage('home')">
+            ← Overzicht
+        </button>
+
+        <div class="card">
+            <h2>Beschikbaarheid</h2>
+            <p>Oktober 2026</p>
+
+            <div class="calendar" id="calendar"></div>
+        </div>
+    </section>
+
+    <section id="schedule" class="hidden">
+        <button class="secondary back" onclick="showPage('home')">
+            ← Overzicht
+        </button>
+
+        <div class="card">
+            <h2>Mijn rooster</h2>
+            <p class="small">Je geplande diensten verschijnen hier.</p>
+
+            <div class="service">
+                <strong>Voorbeeld dienst</strong>
+                <p>Vrijdag 23 oktober 2026</p>
+                <p>17:00 tot 22:00</p>
+                <p>Afwas</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="hours" class="hidden">
+        <button class="secondary back" onclick="showPage('home')">
+            ← Overzicht
+        </button>
+
+        <div class="card">
+            <h2>Uren bijhouden</h2>
+
+            <p>Start een dienst via het overzicht.</p>
+
+            <div class="service">
+                <p class="small">Automatische pauze</p>
+                <p>De pauze wordt later automatisch berekend op basis van je leeftijd en gewerkte tijd.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="correction" class="hidden">
+        <button class="secondary back" onclick="showPage('home')">
+            ← Overzicht
+        </button>
+
+        <div class="card">
+            <h2>Urenoverzicht</h2>
+
+            <p class="stat" id="totalHours">
+                0 uur 0 min
+            </p>
+
+            <p class="small">
+                Je geregistreerde diensten verschijnen hier.
+            </p>
+
+            <div id="serviceHistory"></div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    Thermae Son Planning<br>
+    Gemaakt door Job van der Kruijssen
+</footer>
+
+<script>
+let timerInterval = null;
+let startTimestamp = null;
+let services = [];
+
+function showPage(page) {
+    const pages = [
+        "home",
+        "availability",
+        "schedule",
+        "hours",
+        "correction"
+    ];
+
+    pages.forEach(id => {
+        document.getElementById(id).classList.add("hidden");
+    });
+
+    document.getElementById(page).classList.remove("hidden");
+
+    if (page === "availability") {
+        createCalendar();
+    }
+
+    if (page === "correction") {
+        updateHistory();
+    }
+}
+
+function startService() {
+    startTimestamp = new Date();
+
+    document.getElementById("notWorking").classList.add("hidden");
+    document.getElementById("working").classList.remove("hidden");
+
+    document.getElementById("startTime").textContent =
+        startTimestamp.toLocaleTimeString("nl-NL");
+
+    timerInterval = setInterval(updateTimer, 1000);
+
+    updateTimer();
+}
+
+function updateTimer() {
+    if (!startTimestamp) return;
+
+    const now = new Date();
+    const difference = now - startTimestamp;
+
+    const hours = Math.floor(difference / 3600000);
+    const minutes = Math.floor((difference % 3600000) / 60000);
+    const seconds = Math.floor((difference % 60000) / 1000);
+
+    document.getElementById("timer").textContent =
+        String(hours).padStart(2, "0") + ":" +
+        String(minutes).padStart(2, "0") + ":" +
+        String(seconds).padStart(2, "0");
+}
+
+function stopService() {
+    if (!startTimestamp) return;
+
+    const endTimestamp = new Date();
+
+    clearInterval(timerInterval);
+
+    const totalMilliseconds =
+        endTimestamp - startTimestamp;
+
+    const totalMinutes =
+        Math.floor(totalMilliseconds / 60000);
+
+    services.push({
+        date: startTimestamp.toLocaleDateString("nl-NL"),
+        start: startTimestamp.toLocaleTimeString("nl-NL"),
+        end: endTimestamp.toLocaleTimeString("nl-NL"),
+        minutes: totalMinutes
+    });
+
+    startTimestamp = null;
+
+    document.getElementById("working").classList.add("hidden");
+    document.getElementById("notWorking").classList.remove("hidden");
+
+    document.getElementById("timer").textContent = "00:00:00";
+
+    alert("Dienst opgeslagen.");
+}
+
+function updateHistory() {
+    const history = document.getElementById("serviceHistory");
+
+    history.innerHTML = "";
+
+    let totalMinutes = 0;
+
+    services.forEach(service => {
+        totalMinutes += service.minutes;
+
+        const hours = Math.floor(service.minutes / 60);
+        const minutes = service.minutes % 60;
+
+        const div = document.createElement("div");
+
+        div.className = "service";
+
+        div.innerHTML = `
+            <strong>${service.date}</strong>
+            <p>${service.start} tot ${service.end}</p>
+            <p>Gewerkt: ${hours} uur ${minutes} min</p>
+        `;
+
+        history.appendChild(div);
+    });
+
+    const totalHours = Math.floor(totalMinutes / 60);
+    const remainingMinutes = totalMinutes % 60;
+
+    document.getElementById("totalHours").textContent =
+        totalHours + " uur " + remainingMinutes + " min";
+}
+
+function createCalendar() {
+    const calendar = document.getElementById("calendar");
+
+    calendar.innerHTML = "";
+
+    const year = 2026;
+    const month = 9;
+
+    const firstDay = new Date(year, month, 1);
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    let startingDay = firstDay.getDay();
+
+    if (startingDay === 0) {
+        startingDay = 7;
+    }
+
+    for (let i = 1; i < startingDay; i++) {
+        const empty = document.createElement("div");
+        calendar.appendChild(empty);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+
+        const box = document.createElement("div");
+        box.className = "day";
+
+        box.innerHTML = `
+            <strong>${date.toLocaleDateString("nl-NL", {
+                weekday: "short"
+            })} ${day}</strong>
+
+            <button onclick="setAvailability(this, 'available')">
+                Beschikbaar
+            </button>
+
+            <button
+                class="secondary"
+                onclick="setAvailability(this, 'unavailable')">
+                Niet beschikbaar
+            </button>
+        `;
+
+        calendar.appendChild(box);
+    }
+}
+
+function setAvailability(button, status) {
+    const day = button.parentElement;
+
+    day.classList.remove("available", "unavailable");
+    day.classList.add(status);
+}
+</script>
+
+</body>
+</html>
