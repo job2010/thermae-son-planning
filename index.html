@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
@@ -13,68 +13,77 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f3f6fa;
+    background: #f4f7fb;
     color: #17212b;
 }
 
 header {
-    background: #1769aa;
+    background: linear-gradient(135deg, #1261a0, #1687c7);
     color: white;
-    padding: 24px 20px;
+    padding: 28px 22px;
 }
 
 header h1 {
     margin: 0;
-    font-size: 25px;
+    font-size: 28px;
 }
 
 header p {
     margin: 7px 0 0;
-    opacity: 0.9;
+    opacity: .9;
 }
 
 .container {
-    max-width: 1050px;
+    max-width: 1100px;
     margin: auto;
-    padding: 20px;
+    padding: 22px;
 }
 
 .card {
     background: white;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 24px rgba(20, 40, 70, .08);
 }
 
-.card h2 {
+.login-card {
+    max-width: 430px;
+    margin: 55px auto;
+}
+
+h2 {
     margin-top: 0;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 15px;
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d8e0e8;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: 7px 0 14px;
 }
 
 button {
     width: 100%;
+    padding: 14px;
     border: 0;
-    border-radius: 12px;
-    padding: 15px;
+    border-radius: 11px;
+    background: #1261a0;
+    color: white;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    background: #1769aa;
-    color: white;
+    margin-top: 8px;
 }
 
 button:hover {
-    opacity: 0.9;
+    opacity: .9;
 }
 
 .secondary {
-    background: #e7eef5;
+    background: #e9f0f6;
     color: #17212b;
 }
 
@@ -82,81 +91,67 @@ button:hover {
     background: #c62828;
 }
 
-.timer {
-    font-size: 38px;
-    font-weight: bold;
-    text-align: center;
-    margin: 25px 0;
-}
-
-.stat {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.small {
-    color: #68737d;
-    font-size: 14px;
-}
-
 .hidden {
     display: none;
 }
 
-.back {
-    width: auto;
-    padding: 10px 15px;
-    margin-bottom: 15px;
-}
-
-.service {
-    border: 1px solid #dce3ea;
-    border-radius: 12px;
-    padding: 15px;
-    margin-top: 10px;
-}
-
-.calendar {
+.grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 7px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
 }
 
-.day {
-    min-height: 85px;
-    border: 1px solid #dce3ea;
+.stat {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.small {
+    color: #6c7884;
+    font-size: 14px;
+}
+
+.error {
+    background: #fdecec;
+    color: #a61b1b;
+    padding: 12px;
     border-radius: 10px;
-    padding: 8px;
-    background: white;
+    margin-top: 12px;
 }
 
-.day strong {
-    display: block;
-    margin-bottom: 8px;
+.success {
+    background: #e9f8ee;
+    color: #176b35;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 12px;
 }
 
-.available {
-    background: #e5f6e9;
-}
-
-.unavailable {
-    background: #fde8e8;
+.timer {
+    text-align: center;
+    font-size: 42px;
+    font-weight: bold;
+    margin: 25px 0;
 }
 
 footer {
     text-align: center;
-    color: #68737d;
     padding: 25px;
+    color: #6c7884;
     font-size: 14px;
 }
 
 @media (max-width: 600px) {
-    .calendar {
-        grid-template-columns: repeat(2, 1fr);
+    header h1 {
+        font-size: 23px;
+    }
+
+    .container {
+        padding: 14px;
     }
 
     .timer {
-        font-size: 30px;
+        font-size: 32px;
     }
 }
 </style>
@@ -164,128 +159,188 @@ footer {
 
 <body>
 
+<div id="loginPage">
+
+    <div class="container">
+
+        <div class="card login-card">
+
+            <h1>Thermae Son Planning</h1>
+
+            <p class="small">
+                Log in om je planning en uren te bekijken.
+            </p>
+
+            <label>E-mailadres</label>
+            <input id="email" type="email" placeholder="naam@email.nl">
+
+            <label>Wachtwoord</label>
+            <input id="password" type="password" placeholder="Wachtwoord">
+
+            <button onclick="login()">
+                Inloggen
+            </button>
+
+            <button class="secondary" onclick="showRegister()">
+                Account aanmaken
+            </button>
+
+            <div id="loginError"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="registerPage" class="hidden">
+
+    <div class="container">
+
+        <div class="card login-card">
+
+            <h2>Account aanmaken</h2>
+
+            <label>Naam</label>
+            <input id="registerName" type="text" placeholder="Voor- en achternaam">
+
+            <label>E-mailadres</label>
+            <input id="registerEmail" type="email" placeholder="naam@email.nl">
+
+            <label>Wachtwoord</label>
+            <input id="registerPassword" type="password" placeholder="Wachtwoord">
+
+            <label>Leeftijd</label>
+            <input id="registerAge" type="number" min="13" max="100" placeholder="Leeftijd">
+
+            <button onclick="registerUser()">
+                Account maken
+            </button>
+
+            <button class="secondary" onclick="showLogin()">
+                ← Terug naar inloggen
+            </button>
+
+            <div id="registerError"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="app" class="hidden">
+
 <header>
     <h1>Thermae Son Planning</h1>
-    <p>Planning en urenregistratie</p>
+    <p id="welcomeText">Welkom</p>
 </header>
 
 <main class="container">
 
-    <section id="home">
-        <div class="card">
-            <h2>Overzicht</h2>
-            <p>Welkom bij Thermae Son Planning.</p>
-            <p class="small">Gemaakt door Job van der Kruijssen</p>
+    <div class="card">
+        <h2>Overzicht</h2>
+        <p id="userInfo"></p>
+    </div>
+
+    <div class="grid">
+
+        <button onclick="startService()">
+            START DIENST
+        </button>
+
+        <button onclick="showPage('hours')">
+            Mijn uren
+        </button>
+
+        <button onclick="showPage('availability')">
+            Beschikbaarheid
+        </button>
+
+        <button onclick="showPage('schedule')">
+            Mijn rooster
+        </button>
+
+    </div>
+
+    <div id="serviceCard" class="card hidden">
+
+        <h2>Huidige dienst</h2>
+
+        <p>
+            Gestart om:
+            <strong id="serviceStart"></strong>
+        </p>
+
+        <div id="timer" class="timer">
+            00:00:00
         </div>
 
-        <div class="grid">
-            <button onclick="showPage('availability')">
-                Beschikbaarheid
-            </button>
+        <button class="danger" onclick="stopService()">
+            STOP DIENST
+        </button>
 
-            <button onclick="showPage('schedule')">
-                Mijn rooster
-            </button>
+    </div>
 
-            <button onclick="showPage('hours')">
-                Uren bijhouden
-            </button>
 
-            <button onclick="showPage('correction')">
-                Urenoverzicht
-            </button>
-        </div>
+    <section id="hours" class="card hidden">
 
-        <div class="card" style="margin-top:16px;">
-            <h2>Mijn dienst</h2>
-
-            <div id="notWorking">
-                <p>Je hebt momenteel geen lopende dienst.</p>
-                <button onclick="startService()">START DIENST</button>
-            </div>
-
-            <div id="working" class="hidden">
-                <p><strong>Dienst bezig</strong></p>
-
-                <p class="small">Starttijd</p>
-                <p id="startTime" class="stat"></p>
-
-                <div id="timer" class="timer">00:00:00</div>
-
-                <button class="danger" onclick="stopService()">
-                    STOP DIENST
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <section id="availability" class="hidden">
-        <button class="secondary back" onclick="showPage('home')">
+        <button class="secondary" onclick="showPage('home')">
             ← Overzicht
         </button>
 
-        <div class="card">
-            <h2>Beschikbaarheid</h2>
-            <p>Oktober 2026</p>
+        <h2>Mijn uren</h2>
 
-            <div class="calendar" id="calendar"></div>
-        </div>
+        <p class="stat" id="totalHours">
+            0 uur 0 min
+        </p>
+
+        <div id="history"></div>
+
     </section>
 
-    <section id="schedule" class="hidden">
-        <button class="secondary back" onclick="showPage('home')">
+
+    <section id="availability" class="card hidden">
+
+        <button class="secondary" onclick="showPage('home')">
             ← Overzicht
         </button>
 
-        <div class="card">
-            <h2>Mijn rooster</h2>
-            <p class="small">Je geplande diensten verschijnen hier.</p>
+        <h2>Beschikbaarheid</h2>
 
-            <div class="service">
-                <strong>Voorbeeld dienst</strong>
-                <p>Vrijdag 23 oktober 2026</p>
-                <p>17:00 tot 22:00</p>
-                <p>Afwas</p>
-            </div>
-        </div>
+        <p>
+            Vanaf oktober 2026.
+        </p>
+
+        <p class="small">
+            De kalender wordt later gekoppeld aan Firebase.
+        </p>
+
     </section>
 
-    <section id="hours" class="hidden">
-        <button class="secondary back" onclick="showPage('home')">
+
+    <section id="schedule" class="card hidden">
+
+        <button class="secondary" onclick="showPage('home')">
             ← Overzicht
         </button>
 
-        <div class="card">
-            <h2>Uren bijhouden</h2>
+        <h2>Mijn rooster</h2>
 
-            <p>Start een dienst via het overzicht.</p>
+        <p class="small">
+            Je rooster verschijnt hier zodra de beheerder het heeft ingevoerd.
+        </p>
 
-            <div class="service">
-                <p class="small">Automatische pauze</p>
-                <p>De pauze wordt later automatisch berekend op basis van je leeftijd en gewerkte tijd.</p>
-            </div>
-        </div>
     </section>
 
-    <section id="correction" class="hidden">
-        <button class="secondary back" onclick="showPage('home')">
-            ← Overzicht
+
+    <div class="card">
+        <button class="secondary" onclick="logout()">
+            Uitloggen
         </button>
-
-        <div class="card">
-            <h2>Urenoverzicht</h2>
-
-            <p class="stat" id="totalHours">
-                0 uur 0 min
-            </p>
-
-            <p class="small">
-                Je geregistreerde diensten verschijnen hier.
-            </p>
-
-            <div id="serviceHistory"></div>
-        </div>
-    </section>
+    </div>
 
 </main>
 
@@ -294,182 +349,356 @@ footer {
     Gemaakt door Job van der Kruijssen
 </footer>
 
-<script>
+</div>
+
+
+<script type="module">
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* ================================
+   JOUW FIREBASE CONFIGURATIE
+   ================================ */
+
+const firebaseConfig = {
+
+    apiKey: "VUL_HIER_JOUW_API_KEY_IN",
+
+    authDomain: "thermae-son-planning.firebaseapp.com",
+
+    projectId: "thermae-son-planning",
+
+    storageBucket: "thermae-son-planning.firebasestorage.app",
+
+    messagingSenderId: "677357840589",
+
+    appId: "VUL_HIER_JOUW_APP_ID_IN",
+
+    measurementId: "VUL_HIER_JOUW_MEASUREMENT_ID_IN"
+
+};
+
+
+/* ================================ */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
 let timerInterval = null;
-let startTimestamp = null;
-let services = [];
+let startTime = null;
 
-function showPage(page) {
-    const pages = [
-        "home",
-        "availability",
-        "schedule",
-        "hours",
-        "correction"
-    ];
 
-    pages.forEach(id => {
-        document.getElementById(id).classList.add("hidden");
-    });
+window.showRegister = function() {
 
-    document.getElementById(page).classList.remove("hidden");
+    document.getElementById("loginPage").classList.add("hidden");
 
-    if (page === "availability") {
-        createCalendar();
+    document.getElementById("registerPage").classList.remove("hidden");
+
+};
+
+
+window.showLogin = function() {
+
+    document.getElementById("registerPage").classList.add("hidden");
+
+    document.getElementById("loginPage").classList.remove("hidden");
+
+};
+
+
+window.login = async function() {
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const error =
+        document.getElementById("loginError");
+
+
+    error.innerHTML = "";
+
+
+    try {
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+    } catch (e) {
+
+        error.innerHTML =
+            `<div class="error">
+                Inloggen mislukt. Controleer je e-mailadres en wachtwoord.
+            </div>`;
+
     }
 
-    if (page === "correction") {
-        updateHistory();
+};
+
+
+window.registerUser = async function() {
+
+    const name =
+        document.getElementById("registerName").value.trim();
+
+    const email =
+        document.getElementById("registerEmail").value.trim();
+
+    const password =
+        document.getElementById("registerPassword").value;
+
+    const age =
+        Number(document.getElementById("registerAge").value);
+
+    const error =
+        document.getElementById("registerError");
+
+
+    error.innerHTML = "";
+
+
+    if (!name || !email || !password || !age) {
+
+        error.innerHTML =
+            `<div class="error">
+                Vul alle velden in.
+            </div>`;
+
+        return;
+
     }
-}
 
-function startService() {
-    startTimestamp = new Date();
 
-    document.getElementById("notWorking").classList.add("hidden");
-    document.getElementById("working").classList.remove("hidden");
+    try {
 
-    document.getElementById("startTime").textContent =
-        startTimestamp.toLocaleTimeString("nl-NL");
+        const credential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-    timerInterval = setInterval(updateTimer, 1000);
+
+        await setDoc(
+            doc(db, "users", credential.user.uid),
+            {
+                naam: name,
+                email: email,
+                leeftijd: age,
+                rol: "medewerker",
+                aangemaaktOp: new Date()
+            }
+        );
+
+
+    } catch (e) {
+
+        error.innerHTML =
+            `<div class="error">
+                Account maken mislukt: ${e.message}
+            </div>`;
+
+    }
+
+};
+
+
+window.logout = async function() {
+
+    await signOut(auth);
+
+};
+
+
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+
+        document
+            .getElementById("loginPage")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("registerPage")
+            .classList.add("hidden");
+
+        document
+            .getElementById("app")
+            .classList.add("hidden");
+
+        return;
+
+    }
+
+
+    const userDoc =
+        await getDoc(
+            doc(db, "users", user.uid)
+        );
+
+
+    let userData = {};
+
+
+    if (userDoc.exists()) {
+
+        userData = userDoc.data();
+
+    }
+
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("registerPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("app")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("welcomeText")
+        .textContent =
+        "Welkom, " + (userData.naam || "medewerker");
+
+
+    document
+        .getElementById("userInfo")
+        .textContent =
+        "Ingelogd als " +
+        (userData.rol || "medewerker");
+
+});
+
+
+window.showPage = function(page) {
+
+    document
+        .querySelectorAll("section")
+        .forEach(section => {
+            section.classList.add("hidden");
+        });
+
+
+    if (page !== "home") {
+
+        document
+            .getElementById(page)
+            .classList.remove("hidden");
+
+    }
+
+};
+
+
+window.startService = function() {
+
+    startTime = new Date();
+
+    document
+        .getElementById("serviceCard")
+        .classList.remove("hidden");
+
+
+    document
+        .getElementById("serviceStart")
+        .textContent =
+        startTime.toLocaleTimeString("nl-NL");
+
+
+    timerInterval =
+        setInterval(updateTimer, 1000);
 
     updateTimer();
-}
+
+};
+
 
 function updateTimer() {
-    if (!startTimestamp) return;
 
-    const now = new Date();
-    const difference = now - startTimestamp;
+    if (!startTime) return;
 
-    const hours = Math.floor(difference / 3600000);
-    const minutes = Math.floor((difference % 3600000) / 60000);
-    const seconds = Math.floor((difference % 60000) / 1000);
 
-    document.getElementById("timer").textContent =
-        String(hours).padStart(2, "0") + ":" +
-        String(minutes).padStart(2, "0") + ":" +
+    const difference =
+        new Date() - startTime;
+
+
+    const hours =
+        Math.floor(
+            difference / 3600000
+        );
+
+
+    const minutes =
+        Math.floor(
+            (difference % 3600000) / 60000
+        );
+
+
+    const seconds =
+        Math.floor(
+            (difference % 60000) / 1000
+        );
+
+
+    document
+        .getElementById("timer")
+        .textContent =
+        String(hours).padStart(2, "0") +
+        ":" +
+        String(minutes).padStart(2, "0") +
+        ":" +
         String(seconds).padStart(2, "0");
-}
 
-function stopService() {
-    if (!startTimestamp) return;
+};
 
-    const endTimestamp = new Date();
+
+window.stopService = function() {
 
     clearInterval(timerInterval);
 
-    const totalMilliseconds =
-        endTimestamp - startTimestamp;
+    alert("Dienst geregistreerd.");
 
-    const totalMinutes =
-        Math.floor(totalMilliseconds / 60000);
+    startTime = null;
 
-    services.push({
-        date: startTimestamp.toLocaleDateString("nl-NL"),
-        start: startTimestamp.toLocaleTimeString("nl-NL"),
-        end: endTimestamp.toLocaleTimeString("nl-NL"),
-        minutes: totalMinutes
-    });
+    document
+        .getElementById("serviceCard")
+        .classList.add("hidden");
 
-    startTimestamp = null;
+};
 
-    document.getElementById("working").classList.add("hidden");
-    document.getElementById("notWorking").classList.remove("hidden");
 
-    document.getElementById("timer").textContent = "00:00:00";
-
-    alert("Dienst opgeslagen.");
-}
-
-function updateHistory() {
-    const history = document.getElementById("serviceHistory");
-
-    history.innerHTML = "";
-
-    let totalMinutes = 0;
-
-    services.forEach(service => {
-        totalMinutes += service.minutes;
-
-        const hours = Math.floor(service.minutes / 60);
-        const minutes = service.minutes % 60;
-
-        const div = document.createElement("div");
-
-        div.className = "service";
-
-        div.innerHTML = `
-            <strong>${service.date}</strong>
-            <p>${service.start} tot ${service.end}</p>
-            <p>Gewerkt: ${hours} uur ${minutes} min</p>
-        `;
-
-        history.appendChild(div);
-    });
-
-    const totalHours = Math.floor(totalMinutes / 60);
-    const remainingMinutes = totalMinutes % 60;
-
-    document.getElementById("totalHours").textContent =
-        totalHours + " uur " + remainingMinutes + " min";
-}
-
-function createCalendar() {
-    const calendar = document.getElementById("calendar");
-
-    calendar.innerHTML = "";
-
-    const year = 2026;
-    const month = 9;
-
-    const firstDay = new Date(year, month, 1);
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    let startingDay = firstDay.getDay();
-
-    if (startingDay === 0) {
-        startingDay = 7;
-    }
-
-    for (let i = 1; i < startingDay; i++) {
-        const empty = document.createElement("div");
-        calendar.appendChild(empty);
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(year, month, day);
-
-        const box = document.createElement("div");
-        box.className = "day";
-
-        box.innerHTML = `
-            <strong>${date.toLocaleDateString("nl-NL", {
-                weekday: "short"
-            })} ${day}</strong>
-
-            <button onclick="setAvailability(this, 'available')">
-                Beschikbaar
-            </button>
-
-            <button
-                class="secondary"
-                onclick="setAvailability(this, 'unavailable')">
-                Niet beschikbaar
-            </button>
-        `;
-
-        calendar.appendChild(box);
-    }
-}
-
-function setAvailability(button, status) {
-    const day = button.parentElement;
-
-    day.classList.remove("available", "unavailable");
-    day.classList.add(status);
-}
 </script>
 
 </body>
