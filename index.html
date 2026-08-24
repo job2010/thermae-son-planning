@@ -8,633 +8,715 @@
 
 <style>
 :root {
-    --blue: #1261a0;
-    --blue-dark: #0b4778;
-    --blue-light: #eaf4fc;
-    --green: #168a55;
-    --green-light: #e9f8f0;
-    --red: #c93636;
-    --red-light: #fdecec;
-    --orange: #d77b16;
-    --text: #17212b;
-    --muted: #6d7a87;
-    --background: #f4f7fa;
-    --white: #ffffff;
-    --border: #e1e7ed;
-    --shadow: 0 8px 30px rgba(18, 38, 63, 0.08);
+    --blue:#1165a3;
+    --blue-dark:#0b4778;
+    --blue-light:#eaf4fc;
+    --green:#168a55;
+    --green-light:#e9f8f0;
+    --red:#c93636;
+    --red-light:#fdecec;
+    --text:#17212b;
+    --muted:#6d7a87;
+    --background:#f4f7fa;
+    --white:#ffffff;
+    --border:#e1e7ed;
+    --shadow:0 8px 30px rgba(18,38,63,.08);
 }
 
 * {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
+    box-sizing:border-box;
 }
 
 body {
-    margin: 0;
-    background: var(--background);
-    color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
+    margin:0;
+    background:var(--background);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 button,
 input,
 select {
-    font: inherit;
+    font:inherit;
 }
 
 button {
-    cursor: pointer;
+    cursor:pointer;
 }
+
+/* LOGIN */
+
+.login-screen {
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#0d548d,#187ec0);
+}
+
+.login-box {
+    width:min(430px,100%);
+    background:white;
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
+
+.login-logo {
+    width:65px;
+    height:65px;
+    border-radius:18px;
+    background:var(--blue);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+.login-box h1 {
+    margin:0;
+    font-size:28px;
+}
+
+.login-box p {
+    color:var(--muted);
+}
+
+.input-group {
+    margin-top:18px;
+}
+
+.input-group label {
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+.input-group input {
+    width:100%;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:none;
+}
+
+.input-group input:focus {
+    border-color:var(--blue);
+}
+
+.login-button {
+    width:100%;
+    margin-top:22px;
+    padding:15px;
+    border:0;
+    border-radius:13px;
+    background:var(--blue);
+    color:white;
+    font-weight:800;
+}
+
+.secondary-button {
+    width:100%;
+    margin-top:10px;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    background:white;
+    color:var(--blue);
+    font-weight:700;
+}
+
+.login-error {
+    background:var(--red-light);
+    color:var(--red);
+    padding:12px;
+    border-radius:10px;
+    font-size:13px;
+    margin-top:15px;
+    display:none;
+}
+
+/* APP */
 
 .app {
-    min-height: 100vh;
+    min-height:100vh;
 }
 
-/* HEADER */
-
 .header {
-    background: linear-gradient(135deg, #0d548d, #187ec0);
-    color: white;
-    padding: 24px 20px 28px;
+    background:linear-gradient(135deg,#0d548d,#187ec0);
+    color:white;
+    padding:24px 20px 28px;
 }
 
 .header-inner {
-    max-width: 1100px;
-    margin: auto;
+    max-width:1100px;
+    margin:auto;
 }
 
 .header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
 .logo-title {
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    display:flex;
+    align-items:center;
+    gap:14px;
 }
 
 .logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.16);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 19px;
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:rgba(255,255,255,.16);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
 }
 
 .header h1 {
-    margin: 0;
-    font-size: 25px;
+    margin:0;
+    font-size:25px;
 }
 
 .header p {
-    margin: 5px 0 0;
-    opacity: 0.86;
-    font-size: 14px;
+    margin:5px 0 0;
+    opacity:.86;
+    font-size:14px;
 }
 
 .profile-button {
-    width: auto;
-    border: 1px solid rgba(255,255,255,0.25);
-    background: rgba(255,255,255,0.12);
-    color: white;
-    padding: 10px 14px;
-    border-radius: 11px;
+    border:1px solid rgba(255,255,255,.25);
+    background:rgba(255,255,255,.12);
+    color:white;
+    padding:10px 14px;
+    border-radius:11px;
 }
 
-/* CONTENT */
-
 .container {
-    width: min(1100px, calc(100% - 30px));
-    margin: 0 auto;
-    padding: 24px 0 110px;
+    width:min(1100px,calc(100% - 30px));
+    margin:auto;
+    padding:24px 0 110px;
 }
 
 .page {
-    display: none;
+    display:none;
 }
 
 .page.active {
-    display: block;
+    display:block;
 }
 
-/* DASHBOARD */
-
 .greeting {
-    margin-bottom: 20px;
+    margin-bottom:20px;
 }
 
 .greeting h2 {
-    margin: 0 0 5px;
-    font-size: 26px;
+    margin:0 0 5px;
+    font-size:26px;
 }
 
 .greeting p {
-    margin: 0;
-    color: var(--muted);
+    margin:0;
+    color:var(--muted);
 }
 
-/* WORK CARD */
+/* WORK */
 
 .work-card {
-    background: white;
-    border-radius: 24px;
-    padding: 30px;
-    box-shadow: var(--shadow);
-    margin-bottom: 18px;
-    text-align: center;
+    background:white;
+    border-radius:24px;
+    padding:30px;
+    box-shadow:var(--shadow);
+    margin-bottom:18px;
+    text-align:center;
 }
 
 .work-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #eef2f5;
-    color: var(--muted);
-    border-radius: 999px;
-    padding: 8px 13px;
-    font-size: 13px;
-    font-weight: 700;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:#eef2f5;
+    color:var(--muted);
+    border-radius:999px;
+    padding:8px 13px;
+    font-size:13px;
+    font-weight:700;
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #8a969f;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#8a969f;
 }
 
 .status-dot.active {
-    background: var(--green);
+    background:var(--green);
 }
 
 .work-date {
-    color: var(--muted);
-    margin-top: 18px;
+    color:var(--muted);
+    margin-top:18px;
 }
 
 .timer {
-    font-size: clamp(42px, 10vw, 72px);
-    font-weight: 800;
-    letter-spacing: -2px;
-    margin: 12px 0 24px;
+    font-size:clamp(42px,10vw,72px);
+    font-weight:800;
+    margin:12px 0 24px;
 }
 
 .start-button,
 .stop-button {
-    width: min(480px, 100%);
-    min-height: 82px;
-    border: 0;
-    border-radius: 18px;
-    color: white;
-    font-size: 23px;
-    font-weight: 800;
-    transition: transform 0.15s, box-shadow 0.15s;
+    width:min(480px,100%);
+    min-height:82px;
+    border:0;
+    border-radius:18px;
+    color:white;
+    font-size:23px;
+    font-weight:800;
 }
 
 .start-button {
-    background: linear-gradient(135deg, #168a55, #21a96d);
-    box-shadow: 0 10px 25px rgba(22,138,85,0.22);
+    background:linear-gradient(135deg,#168a55,#21a96d);
 }
 
 .stop-button {
-    background: linear-gradient(135deg, #bd2e2e, #df4747);
-    box-shadow: 0 10px 25px rgba(201,54,54,0.20);
+    background:linear-gradient(135deg,#bd2e2e,#df4747);
 }
 
-.start-button:hover,
-.stop-button:hover {
-    transform: translateY(-2px);
-}
-
-.start-button:active,
-.stop-button:active {
-    transform: translateY(0);
+.small {
+    color:var(--muted);
+    font-size:13px;
 }
 
 /* STATS */
 
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 18px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-bottom:18px;
 }
 
 .stat-card {
-    background: white;
-    border-radius: 18px;
-    padding: 20px;
-    box-shadow: var(--shadow);
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:var(--shadow);
 }
 
 .stat-label {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 9px;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:9px;
 }
 
 .stat-value {
-    font-size: 25px;
-    font-weight: 800;
+    font-size:25px;
+    font-weight:800;
 }
 
-/* CARDS */
-
 .card {
-    background: white;
-    border-radius: 20px;
-    padding: 22px;
-    box-shadow: var(--shadow);
-    margin-bottom: 18px;
+    background:white;
+    border-radius:20px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    margin-bottom:18px;
 }
 
 .card-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
 }
 
 .card-title h2 {
-    margin: 0;
-    font-size: 20px;
+    margin:0;
+    font-size:20px;
 }
 
 .card-title p {
-    margin: 4px 0 0;
-    color: var(--muted);
-    font-size: 13px;
+    margin:4px 0 0;
+    color:var(--muted);
+    font-size:13px;
 }
 
-/* SERVICE */
+/* SERVICES */
 
 .service-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
 .service {
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
 }
 
 .service-main strong {
-    display: block;
-    margin-bottom: 5px;
+    display:block;
+    margin-bottom:5px;
 }
 
 .service-main span {
-    color: var(--muted);
-    font-size: 13px;
+    color:var(--muted);
+    font-size:13px;
 }
 
 .service-duration {
-    text-align: right;
-    font-weight: 800;
+    text-align:right;
+    font-weight:800;
 }
 
 .service-duration small {
-    display: block;
-    color: var(--muted);
-    font-weight: 400;
-    margin-top: 3px;
+    display:block;
+    color:var(--muted);
+    font-weight:400;
+    margin-top:3px;
 }
 
 .delete-button {
-    width: auto;
-    padding: 8px 10px;
-    border: 0;
-    background: var(--red-light);
-    color: var(--red);
-    border-radius: 9px;
-    font-size: 12px;
+    border:0;
+    background:var(--red-light);
+    color:var(--red);
+    padding:8px 10px;
+    border-radius:9px;
+    font-size:12px;
+    margin-top:8px;
 }
 
-/* MONTH */
-
-.month-select {
-    width: auto;
-    min-width: 180px;
-    border: 1px solid var(--border);
-    background: white;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-/* NAVIGATION */
+/* NAV */
 
 .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid var(--border);
-    z-index: 50;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:rgba(255,255,255,.96);
+    border-top:1px solid var(--border);
+    z-index:50;
 }
 
 .nav-inner {
-    max-width: 700px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    max-width:700px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
 }
 
 .nav-button {
-    border: 0;
-    background: transparent;
-    color: var(--muted);
-    padding: 11px 5px 10px;
-    font-size: 11px;
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    padding:11px 5px 10px;
+    font-size:11px;
 }
 
 .nav-icon {
-    display: block;
-    font-size: 20px;
-    margin-bottom: 3px;
+    display:block;
+    font-size:20px;
+    margin-bottom:3px;
 }
 
 .nav-button.active {
-    color: var(--blue);
-    font-weight: 800;
+    color:var(--blue);
+    font-weight:800;
 }
 
-/* BACK */
+/* OTHER */
 
 .back-button {
-    width: auto;
-    border: 0;
-    background: transparent;
-    color: var(--blue);
-    font-weight: 800;
-    padding: 0;
-    margin-bottom: 20px;
+    border:0;
+    background:transparent;
+    color:var(--blue);
+    font-weight:800;
+    padding:0;
+    margin-bottom:20px;
 }
 
-/* CALENDAR */
-
-.calendar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 18px;
+.month-select {
+    border:1px solid var(--border);
+    background:white;
+    padding:10px;
+    border-radius:10px;
 }
 
-.calendar-header h2 {
-    margin: 0;
+.notice {
+    background:var(--blue-light);
+    color:var(--blue-dark);
+    border-radius:14px;
+    padding:15px;
+    font-size:14px;
+    line-height:1.5;
 }
 
-.calendar-arrow {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    border: 0;
-    border-radius: 10px;
-    background: var(--blue-light);
-    color: var(--blue);
-    font-size: 20px;
+.empty {
+    text-align:center;
+    padding:35px 15px;
+    color:var(--muted);
 }
 
-.weekdays,
-.calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 7px;
-}
-
-.weekday {
-    text-align: center;
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 800;
-    padding: 5px;
-}
-
-.calendar-day {
-    min-height: 85px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: white;
-    padding: 9px;
-    position: relative;
-}
-
-.calendar-day.weekend {
-    background: #f7f8fa;
-}
-
-.calendar-day-number {
-    font-weight: 800;
-    font-size: 14px;
-}
-
-.availability-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: 8px;
-}
-
-.availability-button {
-    border: 0;
-    border-radius: 7px;
-    padding: 5px;
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.available {
-    background: var(--green-light);
-    color: var(--green);
-}
-
-.unavailable {
-    background: var(--red-light);
-    color: var(--red);
-}
-
-.selected-available {
-    outline: 2px solid var(--green);
-}
-
-.selected-unavailable {
-    outline: 2px solid var(--red);
+.empty-icon {
+    font-size:35px;
+    margin-bottom:10px;
 }
 
 /* PROFILE */
 
 .profile-row {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
 }
 
 .profile-row:last-child {
-    border-bottom: 0;
+    border-bottom:0;
 }
 
 .profile-label {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 4px;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:4px;
 }
 
 .profile-value {
-    font-weight: 700;
+    font-weight:700;
 }
 
-/* EMPTY */
+/* ADMIN */
 
-.empty {
-    text-align: center;
-    padding: 35px 15px;
-    color: var(--muted);
+.admin-button {
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:13px;
+    background:var(--blue);
+    color:white;
+    font-weight:800;
+    margin-top:10px;
 }
 
-.empty-icon {
-    font-size: 35px;
-    margin-bottom: 10px;
+/* CALENDAR */
+
+.calendar-header {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
 }
 
-/* NOTICE */
-
-.notice {
-    background: var(--blue-light);
-    color: var(--blue-dark);
-    border-radius: 14px;
-    padding: 15px;
-    font-size: 14px;
-    line-height: 1.5;
+.calendar-header h2 {
+    margin:0;
 }
 
-/* RESPONSIVE */
+.calendar-arrow {
+    width:40px;
+    height:40px;
+    border:0;
+    border-radius:10px;
+    background:var(--blue-light);
+    color:var(--blue);
+    font-size:20px;
+}
 
-@media (max-width: 700px) {
+.weekdays,
+.calendar {
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:7px;
+}
 
-    .header {
-        padding: 20px 16px 23px;
-    }
+.weekday {
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:800;
+    padding:5px;
+}
 
-    .container {
-        width: min(100% - 20px, 1100px);
-        padding-top: 18px;
-    }
+.calendar-day {
+    min-height:80px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:white;
+    padding:8px;
+    cursor:pointer;
+}
+
+.calendar-day.weekend {
+    background:#f7f8fa;
+}
+
+.calendar-day-number {
+    font-weight:800;
+    font-size:14px;
+}
+
+.selected-available {
+    background:var(--green-light);
+    border-color:var(--green);
+}
+
+.selected-unavailable {
+    background:var(--red-light);
+    border-color:var(--red);
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
 
     .stats-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
     .work-card {
-        padding: 24px 16px;
+        padding:24px 16px;
+    }
+
+    .calendar-day {
+        min-height:60px;
     }
 
     .service {
-        align-items: flex-start;
+        align-items:flex-start;
     }
 
-    .calendar-day {
-        min-height: 70px;
-        padding: 6px;
-    }
-
-    .availability-buttons {
-        display: none;
-    }
-
-    .calendar-day {
-        cursor: pointer;
-    }
-
-    .calendar-day.selected-available::after {
-        content: "Beschikbaar";
-        display: block;
-        color: var(--green);
-        font-size: 9px;
-        margin-top: 5px;
-        font-weight: 800;
-    }
-
-    .calendar-day.selected-unavailable::after {
-        content: "Niet beschikbaar";
-        display: block;
-        color: var(--red);
-        font-size: 9px;
-        margin-top: 5px;
-        font-weight: 800;
-    }
 }
 
-@media (max-width: 480px) {
+@media(max-width:480px) {
+
+    .header h1 {
+        font-size:20px;
+    }
 
     .header-top {
-        align-items: flex-start;
+        align-items:flex-start;
     }
 
     .profile-button {
-        font-size: 12px;
-        padding: 8px 10px;
-    }
-
-    .header h1 {
-        font-size: 20px;
-    }
-
-    .greeting h2 {
-        font-size: 22px;
+        font-size:12px;
+        padding:8px 10px;
     }
 
     .timer {
-        font-size: 45px;
+        font-size:45px;
     }
 
     .start-button,
     .stop-button {
-        min-height: 72px;
-        font-size: 20px;
+        min-height:72px;
+        font-size:20px;
     }
 
-    .calendar {
-        gap: 4px;
-    }
-
-    .weekdays {
-        gap: 4px;
-    }
-
-    .calendar-day {
-        min-height: 58px;
-    }
-
-    .calendar-day-number {
-        font-size: 12px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+
+<!-- LOGIN -->
+
+<div
+    id="loginScreen"
+    class="login-screen">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            TS
+        </div>
+
+        <h1>Thermae Son Planning</h1>
+
+        <p id="loginSubtitle">
+            Log in om verder te gaan.
+        </p>
+
+
+        <div class="input-group">
+
+            <label>
+                E-mailadres
+            </label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="jouw@email.nl">
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                Wachtwoord
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Wachtwoord">
+
+        </div>
+
+
+        <div
+            id="loginError"
+            class="login-error">
+        </div>
+
+
+        <button
+            class="login-button"
+            onclick="login()">
+
+            INLOGGEN
+
+        </button>
+
+
+        <button
+            class="secondary-button"
+            onclick="showRegister()">
+
+            ACCOUNT MAKEN
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- APP -->
+
+<div
+    id="app"
+    class="app"
+    style="display:none;">
+
 
 <header class="header">
+
     <div class="header-inner">
 
         <div class="header-top">
@@ -646,33 +728,49 @@ button {
                 </div>
 
                 <div>
-                    <h1>Thermae Son Planning</h1>
-                    <p>Planning en urenregistratie</p>
+
+                    <h1>
+                        Thermae Son Planning
+                    </h1>
+
+                    <p>
+                        Planning en urenregistratie
+                    </p>
+
                 </div>
 
             </div>
 
+
             <button
                 class="profile-button"
                 onclick="openPage('profile')">
+
                 Profiel
+
             </button>
 
         </div>
 
     </div>
+
 </header>
 
 
 <main class="container">
 
+
 <!-- HOME -->
 
-<section id="home" class="page active">
+<section
+    id="home"
+    class="page active">
 
     <div class="greeting">
 
-        <h2>Goedemorgen, Job</h2>
+        <h2 id="welcomeName">
+            Welkom
+        </h2>
 
         <p>
             Houd je dienst en gewerkte uren eenvoudig bij.
@@ -683,9 +781,12 @@ button {
 
     <div class="work-card">
 
-        <div class="work-status" id="workStatus">
+        <div class="work-status">
 
-            <span class="status-dot" id="statusDot"></span>
+            <span
+                id="statusDot"
+                class="status-dot">
+            </span>
 
             <span id="statusText">
                 Geen dienst bezig
@@ -694,13 +795,19 @@ button {
         </div>
 
 
-        <div class="work-date" id="workDate">
+        <div
+            id="workDate"
+            class="work-date">
             Vandaag
         </div>
 
 
-        <div class="timer" id="liveTimer">
+        <div
+            id="liveTimer"
+            class="timer">
+
             00:00:00
+
         </div>
 
 
@@ -721,7 +828,9 @@ button {
         </div>
 
 
-        <div id="stopArea" style="display:none;">
+        <div
+            id="stopArea"
+            style="display:none;">
 
             <button
                 class="stop-button"
@@ -749,9 +858,11 @@ button {
             </div>
 
             <div
-                class="stat-value"
-                id="todayHours">
+                id="todayHours"
+                class="stat-value">
+
                 0 uur
+
             </div>
 
         </div>
@@ -764,9 +875,11 @@ button {
             </div>
 
             <div
-                class="stat-value"
-                id="monthHours">
+                id="monthHours"
+                class="stat-value">
+
                 0 uur
+
             </div>
 
         </div>
@@ -779,9 +892,11 @@ button {
             </div>
 
             <div
-                class="stat-value"
-                id="monthServices">
+                id="monthServices"
+                class="stat-value">
+
                 0
+
             </div>
 
         </div>
@@ -794,14 +909,24 @@ button {
         <div class="card-title">
 
             <div>
-                <h2>Recente diensten</h2>
-                <p>Je laatst geregistreerde diensten</p>
+
+                <h2>
+                    Recente diensten
+                </h2>
+
+                <p>
+                    Je laatst geregistreerde diensten
+                </p>
+
             </div>
+
 
             <button
                 onclick="openPage('hours')"
-                style="width:auto; padding:10px 13px;">
+                style="width:auto;padding:10px 13px;">
+
                 Alles
+
             </button>
 
         </div>
@@ -810,6 +935,7 @@ button {
         <div
             id="recentServices"
             class="service-list">
+
         </div>
 
     </div>
@@ -819,12 +945,16 @@ button {
 
 <!-- HOURS -->
 
-<section id="hours" class="page">
+<section
+    id="hours"
+    class="page">
 
     <button
         class="back-button"
         onclick="openPage('home')">
+
         ← Overzicht
+
     </button>
 
 
@@ -833,14 +963,23 @@ button {
         <div class="card-title">
 
             <div>
-                <h2>Mijn uren</h2>
-                <p>Overzicht van al je gewerkte diensten</p>
+
+                <h2>
+                    Mijn uren
+                </h2>
+
+                <p>
+                    Overzicht van je gewerkte diensten
+                </p>
+
             </div>
+
 
             <select
                 id="hoursMonth"
                 class="month-select"
                 onchange="renderHours()">
+
             </select>
 
         </div>
@@ -855,9 +994,11 @@ button {
                 </div>
 
                 <div
-                    class="stat-value"
-                    id="selectedMonthHours">
+                    id="selectedMonthHours"
+                    class="stat-value">
+
                     0 uur
+
                 </div>
 
             </div>
@@ -870,9 +1011,11 @@ button {
                 </div>
 
                 <div
-                    class="stat-value"
-                    id="selectedMonthBreak">
+                    id="selectedMonthBreak"
+                    class="stat-value">
+
                     0 min
+
                 </div>
 
             </div>
@@ -885,9 +1028,11 @@ button {
                 </div>
 
                 <div
-                    class="stat-value"
-                    id="selectedMonthServices">
+                    id="selectedMonthServices"
+                    class="stat-value">
+
                     0
+
                 </div>
 
             </div>
@@ -898,24 +1043,6 @@ button {
         <div
             id="hoursList"
             class="service-list">
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h2>Urencorrectie</h2>
-
-        <div class="notice">
-
-            Gebruik dit overzicht wanneer je je gewerkte uren moet controleren
-            of doorgeven voor een urencorrectie.
-
-            <br><br>
-
-            Per dienst zie je de datum, begin- en eindtijd, pauze en netto
-            geregistreerde werktijd.
 
         </div>
 
@@ -926,12 +1053,16 @@ button {
 
 <!-- AVAILABILITY -->
 
-<section id="availability" class="page">
+<section
+    id="availability"
+    class="page">
 
     <button
         class="back-button"
         onclick="openPage('home')">
+
         ← Overzicht
+
     </button>
 
 
@@ -942,17 +1073,23 @@ button {
             <button
                 class="calendar-arrow"
                 onclick="changeMonth(-1)">
+
                 ‹
+
             </button>
+
 
             <h2 id="calendarTitle">
                 Oktober 2026
             </h2>
 
+
             <button
                 class="calendar-arrow"
                 onclick="changeMonth(1)">
+
                 ›
+
             </button>
 
         </div>
@@ -962,12 +1099,13 @@ button {
 
             Klik op een dag om je beschikbaarheid aan te geven.
 
-            <br>
+            <br><br>
 
             Groen = beschikbaar.
             Rood = niet beschikbaar.
 
         </div>
+
 
         <br>
 
@@ -988,6 +1126,7 @@ button {
         <div
             id="calendar"
             class="calendar">
+
         </div>
 
     </div>
@@ -997,26 +1136,24 @@ button {
 
 <!-- SCHEDULE -->
 
-<section id="schedule" class="page">
+<section
+    id="schedule"
+    class="page">
 
     <button
         class="back-button"
         onclick="openPage('home')">
+
         ← Overzicht
+
     </button>
 
 
     <div class="card">
 
-        <div class="card-title">
-
-            <div>
-                <h2>Mijn rooster</h2>
-                <p>Je geplande diensten</p>
-            </div>
-
-        </div>
-
+        <h2>
+            Mijn rooster
+        </h2>
 
         <div class="empty">
 
@@ -1041,12 +1178,16 @@ button {
 
 <!-- PROFILE -->
 
-<section id="profile" class="page">
+<section
+    id="profile"
+    class="page">
 
     <button
         class="back-button"
         onclick="openPage('home')">
+
         ← Overzicht
+
     </button>
 
 
@@ -1055,8 +1196,15 @@ button {
         <div class="card-title">
 
             <div>
-                <h2>Mijn profiel</h2>
-                <p>Je persoonlijke gegevens</p>
+
+                <h2>
+                    Mijn profiel
+                </h2>
+
+                <p>
+                    Je accountgegevens
+                </p>
+
             </div>
 
         </div>
@@ -1068,8 +1216,10 @@ button {
                 Naam
             </div>
 
-            <div class="profile-value">
-                Job van der Kruijssen
+            <div
+                id="profileName"
+                class="profile-value">
+
             </div>
 
         </div>
@@ -1078,11 +1228,13 @@ button {
         <div class="profile-row">
 
             <div class="profile-label">
-                Leeftijd
+                E-mailadres
             </div>
 
-            <div class="profile-value">
-                Nog niet ingesteld
+            <div
+                id="profileEmail"
+                class="profile-value">
+
             </div>
 
         </div>
@@ -1094,24 +1246,144 @@ button {
                 Rol
             </div>
 
-            <div class="profile-value">
+            <div
+                id="profileRole"
+                class="profile-value">
+
                 Medewerker
+
             </div>
 
         </div>
+
+
+        <button
+            class="secondary-button"
+            onclick="logout()">
+
+            UITLOGGEN
+
+        </button>
+
+
+        <button
+            id="adminButton"
+            class="admin-button"
+            style="display:none;"
+            onclick="openPage('admin')">
+
+            BEHEERDERSOVERZICHT
+
+        </button>
 
     </div>
 
 
     <div class="card">
 
-        <h2>Pauze-informatie</h2>
+        <h2>
+            Pauze
+        </h2>
 
         <p class="small">
-            Je leeftijd wordt later gekoppeld aan de automatische
-            pauzeberekening. Je hoeft tijdens een dienst geen pauzeknop
-            te gebruiken.
+
+            Je hoeft tijdens een dienst geen pauzeknop te gebruiken.
+            De pauze wordt automatisch verwerkt in je urenregistratie.
+
         </p>
+
+    </div>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section
+    id="admin"
+    class="page">
+
+    <button
+        class="back-button"
+        onclick="openPage('profile')">
+
+        ← Profiel
+
+    </button>
+
+
+    <div class="card">
+
+        <h2>
+            Beheerder
+        </h2>
+
+        <p class="small">
+            Dit gedeelte wordt later gekoppeld aan Firebase.
+        </p>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Medewerkers
+                </div>
+
+                <div
+                    id="adminUsers"
+                    class="stat-value">
+
+                    1
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Deze maand
+                </div>
+
+                <div
+                    id="adminHours"
+                    class="stat-value">
+
+                    0 uur
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Diensten
+                </div>
+
+                <div
+                    id="adminServices"
+                    class="stat-value">
+
+                    0
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="notice">
+
+            Zodra Firebase is gekoppeld, zie je hier per medewerker
+            de gewerkte uren per maand.
+
+        </div>
 
     </div>
 
@@ -1177,10 +1449,368 @@ button {
 <script>
 
 /* =====================================================
-   BASISGEGEVENS
+   ACCOUNT
    ===================================================== */
 
-const STORAGE_KEY = "thermaeSonPlanning_v2";
+const ACCOUNT_KEY =
+    "thermaeSonAccounts_v1";
+
+const SESSION_KEY =
+    "thermaeSonSession_v1";
+
+
+let currentUser = null;
+
+
+function getAccounts() {
+
+    return JSON.parse(
+        localStorage.getItem(
+            ACCOUNT_KEY
+        ) || "[]"
+    );
+
+}
+
+
+function saveAccounts(accounts) {
+
+    localStorage.setItem(
+        ACCOUNT_KEY,
+        JSON.stringify(accounts)
+    );
+
+}
+
+
+function showError(message) {
+
+    const error =
+        document.getElementById(
+            "loginError"
+        );
+
+    error.textContent =
+        message;
+
+    error.style.display =
+        "block";
+
+}
+
+
+function hideError() {
+
+    document.getElementById(
+        "loginError"
+    ).style.display =
+        "none";
+
+}
+
+
+/* ACCOUNT MAKEN */
+
+function showRegister() {
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        );
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        );
+
+
+    const name =
+        prompt(
+            "Wat is je naam?"
+        );
+
+
+    if (!name) {
+        return;
+    }
+
+
+    const emailValue =
+        email.value.trim();
+
+
+    const passwordValue =
+        password.value;
+
+
+    if (!emailValue) {
+
+        showError(
+            "Vul eerst je e-mailadres in."
+        );
+
+        return;
+
+    }
+
+
+    if (passwordValue.length < 6) {
+
+        showError(
+            "Je wachtwoord moet minimaal 6 tekens bevatten."
+        );
+
+        return;
+
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    if (
+        accounts.some(
+            account =>
+                account.email.toLowerCase() ===
+                emailValue.toLowerCase()
+        )
+    ) {
+
+        showError(
+            "Er bestaat al een account met dit e-mailadres."
+        );
+
+        return;
+
+    }
+
+
+    const isAdmin =
+        emailValue.toLowerCase() ===
+        "vanderkruijssenjob09@gmail.com";
+
+
+    const account = {
+
+        id:
+            Date.now(),
+
+        name:
+            name,
+
+        email:
+            emailValue,
+
+        password:
+            passwordValue,
+
+        role:
+            isAdmin
+                ? "beheerder"
+                : "medewerker"
+
+    };
+
+
+    accounts.push(
+        account
+    );
+
+
+    saveAccounts(
+        accounts
+    );
+
+
+    alert(
+        "Account aangemaakt. Je kunt nu inloggen."
+    );
+
+}
+
+
+/* INLOGGEN */
+
+function login() {
+
+    hideError();
+
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    if (!email || !password) {
+
+        showError(
+            "Vul je e-mailadres en wachtwoord in."
+        );
+
+        return;
+
+    }
+
+
+    const accounts =
+        getAccounts();
+
+
+    const account =
+        accounts.find(
+            item =>
+                item.email.toLowerCase() ===
+                    email.toLowerCase()
+                &&
+                item.password ===
+                    password
+        );
+
+
+    if (!account) {
+
+        showError(
+            "E-mailadres of wachtwoord klopt niet."
+        );
+
+        return;
+
+    }
+
+
+    currentUser =
+        account;
+
+
+    localStorage.setItem(
+        SESSION_KEY,
+        JSON.stringify(
+            account
+        )
+    );
+
+
+    showApp();
+
+}
+
+
+/* UITLOGGEN */
+
+function logout() {
+
+    localStorage.removeItem(
+        SESSION_KEY
+    );
+
+
+    currentUser =
+        null;
+
+
+    document.getElementById(
+        "app"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "loginPassword"
+    ).value = "";
+
+}
+
+
+/* APP TONEN */
+
+function showApp() {
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "app"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "welcomeName"
+    ).textContent =
+        "Welkom, " +
+        currentUser.name;
+
+
+    document.getElementById(
+        "profileName"
+    ).textContent =
+        currentUser.name;
+
+
+    document.getElementById(
+        "profileEmail"
+    ).textContent =
+        currentUser.email;
+
+
+    document.getElementById(
+        "profileRole"
+    ).textContent =
+        currentUser.role;
+
+
+    if (
+        currentUser.role ===
+        "beheerder"
+    ) {
+
+        document.getElementById(
+            "adminButton"
+        ).style.display =
+            "block";
+
+    }
+
+
+    loadData();
+
+    updateWorkingInterface();
+
+    updateDashboard();
+
+    setupMonthSelector();
+
+    renderHours();
+
+    renderCalendar();
+
+}
+
+
+/* =====================================================
+   UREN
+   ===================================================== */
+
+const STORAGE_KEY =
+    "thermaeSonPlanning_v3";
+
 
 let services = [];
 
@@ -1188,20 +1818,27 @@ let currentService = null;
 
 let timerInterval = null;
 
-let calendarDate = new Date(2026, 9, 1);
+let calendarDate =
+    new Date(
+        2026,
+        9,
+        1
+    );
 
-
-/* =====================================================
-   OPSLAG
-   ===================================================== */
 
 function saveData() {
 
     localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
-            services: services,
-            currentService: currentService
+            userId:
+                currentUser.id,
+
+            services:
+                services,
+
+            currentService:
+                currentService
         })
     );
 
@@ -1211,24 +1848,53 @@ function saveData() {
 function loadData() {
 
     const saved =
-        localStorage.getItem(STORAGE_KEY);
+        localStorage.getItem(
+            STORAGE_KEY
+        );
+
 
     if (!saved) {
+
+        services = [];
+        currentService = null;
+
         return;
+
     }
+
 
     try {
 
         const data =
-            JSON.parse(saved);
+            JSON.parse(
+                saved
+            );
+
+
+        if (
+            data.userId !==
+            currentUser.id
+        ) {
+
+            services = [];
+            currentService = null;
+
+            return;
+
+        }
+
 
         services =
-            Array.isArray(data.services)
+            Array.isArray(
+                data.services
+            )
                 ? data.services
                 : [];
 
+
         currentService =
-            data.currentService || null;
+            data.currentService ||
+            null;
 
     } catch {
 
@@ -1240,74 +1906,106 @@ function loadData() {
 }
 
 
-/* =====================================================
-   PAGINA'S
-   ===================================================== */
+/* PAGINA'S */
 
 function openPage(page) {
 
     document
         .querySelectorAll(".page")
-        .forEach(element => {
-            element.classList.remove("active");
-        });
+        .forEach(
+            element =>
+                element.classList.remove(
+                    "active"
+                )
+        );
 
 
     const selected =
-        document.getElementById(page);
+        document.getElementById(
+            page
+        );
+
 
     if (selected) {
-        selected.classList.add("active");
+
+        selected.classList.add(
+            "active"
+        );
+
     }
 
 
     document
-        .querySelectorAll(".nav-button")
-        .forEach(button => {
+        .querySelectorAll(
+            ".nav-button"
+        )
+        .forEach(
+            button => {
 
-            button.classList.remove("active");
+                button.classList.remove(
+                    "active"
+                );
 
-            if (
-                button.dataset.page === page
-            ) {
-                button.classList.add("active");
+
+                if (
+                    button.dataset.page ===
+                    page
+                ) {
+
+                    button.classList.add(
+                        "active"
+                    );
+
+                }
+
             }
-
-        });
+        );
 
 
     if (page === "hours") {
+
         setupMonthSelector();
+
         renderHours();
+
     }
 
 
     if (page === "availability") {
+
         renderCalendar();
+
     }
 
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    if (page === "admin") {
+
+        renderAdmin();
+
+    }
+
+
+    window.scrollTo(
+        {
+            top:0,
+            behavior:"smooth"
+        }
+    );
 
 }
 
 
-/* =====================================================
-   DATUM EN TIJD
-   ===================================================== */
+/* DATUM */
 
 function formatDate(date) {
 
     return new Intl.DateTimeFormat(
         "nl-NL",
         {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric"
+            weekday:"long",
+            day:"numeric",
+            month:"long",
+            year:"numeric"
         }
     ).format(date);
 
@@ -1319,9 +2017,9 @@ function formatShortDate(date) {
     return new Intl.DateTimeFormat(
         "nl-NL",
         {
-            weekday: "long",
-            day: "numeric",
-            month: "long"
+            weekday:"long",
+            day:"numeric",
+            month:"long"
         }
     ).format(date);
 
@@ -1333,8 +2031,8 @@ function formatTime(date) {
     return new Intl.DateTimeFormat(
         "nl-NL",
         {
-            hour: "2-digit",
-            minute: "2-digit"
+            hour:"2-digit",
+            minute:"2-digit"
         }
     ).format(date);
 
@@ -1344,72 +2042,72 @@ function formatTime(date) {
 function formatDuration(minutes) {
 
     const safe =
-        Math.max(0, Math.round(minutes));
+        Math.max(
+            0,
+            Math.round(
+                minutes
+            )
+        );
+
 
     const hours =
-        Math.floor(safe / 60);
+        Math.floor(
+            safe / 60
+        );
+
 
     const mins =
         safe % 60;
 
 
     if (hours === 0) {
+
         return `${mins} min`;
+
     }
 
+
     if (mins === 0) {
+
         return `${hours} uur`;
+
     }
+
 
     return `${hours} uur ${mins} min`;
 
 }
 
 
-/* =====================================================
-   PAUZE
-   ===================================================== */
+/* PAUZE */
 
-/*
-   De app bewaart de volledige diensttijd.
-   De netto werktijd wordt apart berekend.
+function calculateBreakMinutes(
+    totalMinutes
+) {
 
-   De exacte pauzeregel wordt later gekoppeld aan
-   het leeftijdsprofiel en de actuele regels.
-*/
+    if (
+        totalMinutes <
+        270
+    ) {
 
-function calculateBreakMinutes(totalMinutes) {
-
-    /*
-       Basis voor deze versie:
-
-       Minder dan 4,5 uur:
-       0 minuten.
-
-       Vanaf 4,5 uur:
-       30 minuten.
-
-       De definitieve leeftijdsregels koppelen we later
-       aan het profiel.
-    */
-
-    if (totalMinutes < 270) {
         return 0;
+
     }
+
 
     return 30;
 
 }
 
 
-/* =====================================================
-   DIENST STARTEN
-   ===================================================== */
+/* START */
 
 function startService() {
 
     if (currentService) {
+
         return;
+
     }
 
 
@@ -1423,7 +2121,8 @@ function startService() {
             now.toISOString(),
 
         date:
-            now.toISOString().split("T")[0]
+            now.toISOString()
+                .split("T")[0]
 
     };
 
@@ -1437,14 +2136,14 @@ function startService() {
 }
 
 
-/* =====================================================
-   DIENST STOPPEN
-   ===================================================== */
+/* STOP */
 
 function stopService() {
 
     if (!currentService) {
+
         return;
+
     }
 
 
@@ -1453,16 +2152,21 @@ function stopService() {
 
 
     const start =
-        new Date(currentService.start);
+        new Date(
+            currentService.start
+        );
 
 
     const totalMinutes =
         Math.floor(
-            (end - start) / 60000
+            (end - start) /
+            60000
         );
 
 
-    if (totalMinutes <= 0) {
+    if (
+        totalMinutes <= 0
+    ) {
 
         alert(
             "De dienst is te kort om op te slaan."
@@ -1482,11 +2186,12 @@ function stopService() {
     const netMinutes =
         Math.max(
             0,
-            totalMinutes - breakMinutes
+            totalMinutes -
+            breakMinutes
         );
 
 
-    const service = {
+    services.unshift({
 
         id:
             Date.now(),
@@ -1506,17 +2211,14 @@ function stopService() {
         netMinutes:
             netMinutes
 
-    };
+    });
 
 
-    services.unshift(service);
-
-
-    currentService = null;
+    currentService =
+        null;
 
 
     saveData();
-
 
     stopTimer();
 
@@ -1524,17 +2226,19 @@ function stopService() {
 
     updateDashboard();
 
+    setupMonthSelector();
+
+    renderHours();
+
 
     alert(
-        "Je dienst is opgeslagen in je urenoverzicht."
+        "Je dienst is opgeslagen."
     );
 
 }
 
 
-/* =====================================================
-   LIVE TIMER
-   ===================================================== */
+/* TIMER */
 
 function startTimer() {
 
@@ -1559,7 +2263,8 @@ function stopTimer() {
             timerInterval
         );
 
-        timerInterval = null;
+        timerInterval =
+            null;
 
     }
 
@@ -1598,7 +2303,8 @@ function updateTimer() {
         Math.max(
             0,
             Math.floor(
-                (now - start) / 1000
+                (now - start) /
+                1000
             )
         );
 
@@ -1611,7 +2317,8 @@ function updateTimer() {
 
     const minutes =
         Math.floor(
-            (seconds % 3600) / 60
+            (seconds % 3600) /
+            60
         );
 
 
@@ -1627,9 +2334,7 @@ function updateTimer() {
 }
 
 
-/* =====================================================
-   WERKSTATUS
-   ===================================================== */
+/* STATUS */
 
 function updateWorkingInterface() {
 
@@ -1638,20 +2343,24 @@ function updateWorkingInterface() {
             "statusText"
         );
 
+
     const statusDot =
         document.getElementById(
             "statusDot"
         );
+
 
     const startArea =
         document.getElementById(
             "startArea"
         );
 
+
     const stopArea =
         document.getElementById(
             "stopArea"
         );
+
 
     const workDate =
         document.getElementById(
@@ -1725,9 +2434,7 @@ function updateWorkingInterface() {
 }
 
 
-/* =====================================================
-   DASHBOARD
-   ===================================================== */
+/* DASHBOARD */
 
 function getCurrentMonthServices() {
 
@@ -1760,10 +2467,6 @@ function getCurrentMonthServices() {
 
 function updateDashboard() {
 
-    const now =
-        new Date();
-
-
     const monthServices =
         getCurrentMonthServices();
 
@@ -1780,8 +2483,12 @@ function updateDashboard() {
         );
 
 
+    const today =
+        new Date();
+
+
     const todayKey =
-        now.toISOString()
+        today.toISOString()
             .split("T")[0];
 
 
@@ -1789,10 +2496,9 @@ function updateDashboard() {
         services
             .filter(
                 service =>
-                    service.start
-                        .startsWith(
-                            todayKey
-                        )
+                    service.start.startsWith(
+                        todayKey
+                    )
             )
             .reduce(
                 (
@@ -1847,15 +2553,17 @@ function renderRecentServices() {
         );
 
 
-    if (recent.length === 0) {
+    if (
+        recent.length ===
+        0
+    ) {
 
         container.innerHTML = `
             <div class="empty">
                 <div class="empty-icon">◷</div>
                 <strong>Nog geen diensten</strong>
                 <p>
-                    Je eerste dienst verschijnt hier
-                    zodra je op START DIENST drukt.
+                    Je eerste dienst verschijnt hier.
                 </p>
             </div>
         `;
@@ -1866,22 +2574,18 @@ function renderRecentServices() {
 
 
     container.innerHTML =
-        recent
-            .map(
-                service =>
-                    createServiceHTML(
-                        service,
-                        false
-                    )
-            )
-            .join("");
+        recent.map(
+            service =>
+                createServiceHTML(
+                    service,
+                    false
+                )
+        ).join("");
 
 }
 
 
-/* =====================================================
-   DIENST HTML
-   ===================================================== */
+/* SERVICE HTML */
 
 function createServiceHTML(
     service,
@@ -1900,18 +2604,6 @@ function createServiceHTML(
         );
 
 
-    const deleteButton =
-        showDelete
-            ? `
-                <button
-                    class="delete-button"
-                    onclick="deleteService(${service.id})">
-                    Verwijderen
-                </button>
-              `
-            : "";
-
-
     return `
         <div class="service">
 
@@ -1927,7 +2619,23 @@ function createServiceHTML(
                     ${formatTime(end)}
                 </span>
 
-                ${deleteButton}
+                ${
+                    showDelete
+                    ?
+                    `
+                    <br>
+
+                    <button
+                        class="delete-button"
+                        onclick="deleteService(${service.id})">
+
+                        Verwijderen
+
+                    </button>
+                    `
+                    :
+                    ""
+                }
 
             </div>
 
@@ -1951,9 +2659,7 @@ function createServiceHTML(
 }
 
 
-/* =====================================================
-   MAANDSELECTIE
-   ===================================================== */
+/* MAANDEN */
 
 function setupMonthSelector() {
 
@@ -1963,8 +2669,8 @@ function setupMonthSelector() {
         );
 
 
-    const existing =
-        select.value;
+    const now =
+        new Date();
 
 
     const months =
@@ -1982,40 +2688,28 @@ function setupMonthSelector() {
 
             const key =
                 `${date.getFullYear()}-${String(
-                    date.getMonth() + 1
+                    date.getMonth()+1
                 ).padStart(2,"0")}`;
 
 
             months.set(
                 key,
-                new Date(
-                    date.getFullYear(),
-                    date.getMonth(),
-                    1
-                )
+                date
             );
 
         }
     );
 
 
-    const now =
-        new Date();
-
-
     const currentKey =
         `${now.getFullYear()}-${String(
-            now.getMonth() + 1
+            now.getMonth()+1
         ).padStart(2,"0")}`;
 
 
     months.set(
         currentKey,
-        new Date(
-            now.getFullYear(),
-            now.getMonth(),
-            1
-        )
+        now
     );
 
 
@@ -2029,42 +2723,24 @@ function setupMonthSelector() {
 
 
     select.innerHTML =
-        sorted
-            .map(
-                ([key,date]) => `
-                    <option value="${key}">
-                        ${new Intl.DateTimeFormat(
-                            "nl-NL",
-                            {
-                                month:"long",
-                                year:"numeric"
-                            }
-                        ).format(date)}
-                    </option>
-                `
-            )
-            .join("");
-
-
-    if (
-        existing &&
-        sorted.some(
-            item =>
-                item[0] === existing
-        )
-    ) {
-
-        select.value =
-            existing;
-
-    }
+        sorted.map(
+            ([key,date]) => `
+                <option value="${key}">
+                    ${new Intl.DateTimeFormat(
+                        "nl-NL",
+                        {
+                            month:"long",
+                            year:"numeric"
+                        }
+                    ).format(date)}
+                </option>
+            `
+        ).join("");
 
 }
 
 
-/* =====================================================
-   URENOVERZICHT
-   ===================================================== */
+/* UREN */
 
 function renderHours() {
 
@@ -2075,11 +2751,13 @@ function renderHours() {
 
 
     if (!select.value) {
+
         return;
+
     }
 
 
-    const [year, month] =
+    const [year,month] =
         select.value
             .split("-")
             .map(Number);
@@ -2099,7 +2777,7 @@ function renderHours() {
                     date.getFullYear() ===
                         year
                     &&
-                    date.getMonth() + 1 ===
+                    date.getMonth()+1 ===
                         month
                 );
 
@@ -2107,25 +2785,25 @@ function renderHours() {
         );
 
 
-    const totalMinutes =
+    const total =
         filtered.reduce(
             (
-                total,
+                sum,
                 service
             ) =>
-                total +
+                sum +
                 service.netMinutes,
             0
         );
 
 
-    const breakMinutes =
+    const breaks =
         filtered.reduce(
             (
-                total,
+                sum,
                 service
             ) =>
-                total +
+                sum +
                 service.breakMinutes,
             0
         );
@@ -2134,17 +2812,13 @@ function renderHours() {
     document.getElementById(
         "selectedMonthHours"
     ).textContent =
-        formatDuration(
-            totalMinutes
-        );
+        formatDuration(total);
 
 
     document.getElementById(
         "selectedMonthBreak"
     ).textContent =
-        formatDuration(
-            breakMinutes
-        );
+        formatDuration(breaks);
 
 
     document.getElementById(
@@ -2159,15 +2833,14 @@ function renderHours() {
         );
 
 
-    if (filtered.length === 0) {
+    if (!filtered.length) {
 
         list.innerHTML = `
             <div class="empty">
                 <div class="empty-icon">◷</div>
-                <strong>Geen diensten gevonden</strong>
+                <strong>Geen diensten</strong>
                 <p>
-                    Er zijn geen geregistreerde diensten
-                    in deze maand.
+                    Geen geregistreerde diensten in deze maand.
                 </p>
             </div>
         `;
@@ -2178,33 +2851,29 @@ function renderHours() {
 
 
     list.innerHTML =
-        filtered
-            .map(
-                service =>
-                    createServiceHTML(
-                        service,
-                        true
-                    )
-            )
-            .join("");
+        filtered.map(
+            service =>
+                createServiceHTML(
+                    service,
+                    true
+                )
+        ).join("");
 
 }
 
 
-/* =====================================================
-   DIENST VERWIJDEREN
-   ===================================================== */
+/* VERWIJDEREN */
 
 function deleteService(id) {
 
-    const confirmed =
-        confirm(
-            "Weet je zeker dat je deze dienst wilt verwijderen?"
-        );
+    if (
+        !confirm(
+            "Deze dienst verwijderen?"
+        )
+    ) {
 
-
-    if (!confirmed) {
         return;
+
     }
 
 
@@ -2219,21 +2888,66 @@ function deleteService(id) {
 
     updateDashboard();
 
+    setupMonthSelector();
+
     renderHours();
 
 }
 
 
 /* =====================================================
-   KALENDER
+   BESCHIKBAARHEID
    ===================================================== */
+
+function getAvailability() {
+
+    return JSON.parse(
+        localStorage.getItem(
+            "thermaeSonAvailability_" +
+            currentUser.id
+        ) || "{}"
+    );
+
+}
+
+
+function saveAvailability(data) {
+
+    localStorage.setItem(
+        "thermaeSonAvailability_" +
+        currentUser.id,
+        JSON.stringify(
+            data
+        )
+    );
+
+}
+
+
+function getDateKey(date) {
+
+    return (
+        date.getFullYear() +
+        "-" +
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0") +
+        "-" +
+        String(
+            date.getDate()
+        ).padStart(2,"0")
+    );
+
+}
+
 
 function changeMonth(direction) {
 
     calendarDate =
         new Date(
             calendarDate.getFullYear(),
-            calendarDate.getMonth() + direction,
+            calendarDate.getMonth() +
+                direction,
             1
         );
 
@@ -2259,8 +2973,8 @@ function renderCalendar() {
         new Intl.DateTimeFormat(
             "nl-NL",
             {
-                month: "long",
-                year: "numeric"
+                month:"long",
+                year:"numeric"
             }
         ).format(
             calendarDate
@@ -2284,44 +2998,47 @@ function renderCalendar() {
         );
 
 
-    let startingDay =
+    let start =
         firstDay.getDay();
 
 
-    if (startingDay === 0) {
-        startingDay = 7;
+    if (start === 0) {
+
+        start = 7;
+
     }
 
 
-    const daysInMonth =
+    const days =
         new Date(
             year,
-            month + 1,
+            month+1,
             0
         ).getDate();
 
 
     for (
-        let i = 1;
-        i < startingDay;
+        let i=1;
+        i<start;
         i++
     ) {
 
-        const empty =
+        calendar.appendChild(
             document.createElement(
                 "div"
-            );
-
-        calendar.appendChild(
-            empty
+            )
         );
 
     }
 
 
+    const availability =
+        getAvailability();
+
+
     for (
-        let day = 1;
-        day <= daysInMonth;
+        let day=1;
+        day<=days;
         day++
     ) {
 
@@ -2333,17 +3050,17 @@ function renderCalendar() {
             );
 
 
-        const dateKey =
+        const key =
             getDateKey(date);
 
 
-        const dayElement =
+        const element =
             document.createElement(
                 "div"
             );
 
 
-        dayElement.className =
+        element.className =
             "calendar-day";
 
 
@@ -2352,52 +3069,49 @@ function renderCalendar() {
             date.getDay() === 6
         ) {
 
-            dayElement.classList.add(
+            element.classList.add(
                 "weekend"
             );
 
         }
 
 
-        dayElement.innerHTML = `
+        if (
+            availability[key] ===
+            "available"
+        ) {
+
+            element.classList.add(
+                "selected-available"
+            );
+
+        }
+
+
+        if (
+            availability[key] ===
+            "unavailable"
+        ) {
+
+            element.classList.add(
+                "selected-unavailable"
+            );
+
+        }
+
+
+        element.innerHTML = `
             <div class="calendar-day-number">
                 ${day}
-            </div>
-
-            <div class="availability-buttons">
-
-                <button
-                    class="availability-button available"
-                    onclick="setAvailability('${dateKey}', 'available')">
-                    Beschikbaar
-                </button>
-
-                <button
-                    class="availability-button unavailable"
-                    onclick="setAvailability('${dateKey}', 'unavailable')">
-                    Niet beschikbaar
-                </button>
-
             </div>
         `;
 
 
-        dayElement.addEventListener(
-            "click",
-            function(event) {
-
-                if (
-                    event.target.tagName ===
-                    "BUTTON"
-                ) {
-                    return;
-                }
-
+        element.onclick =
+            function() {
 
                 const current =
-                    getAvailability(
-                        dateKey
-                    );
+                    availability[key];
 
 
                 if (
@@ -2405,131 +3119,29 @@ function renderCalendar() {
                     "available"
                 ) {
 
-                    setAvailability(
-                        dateKey,
-                        "unavailable"
-                    );
+                    availability[key] =
+                        "unavailable";
 
                 } else {
 
-                    setAvailability(
-                        dateKey,
-                        "available"
-                    );
+                    availability[key] =
+                        "available";
 
                 }
 
-            }
-        );
+
+                saveAvailability(
+                    availability
+                );
 
 
-        applyAvailabilityStyle(
-            dayElement,
-            dateKey
-        );
+                renderCalendar();
+
+            };
 
 
         calendar.appendChild(
-            dayElement
-        );
-
-    }
-
-}
-
-
-function getDateKey(date) {
-
-    return (
-        date.getFullYear() +
-        "-" +
-        String(
-            date.getMonth() + 1
-        ).padStart(2,"0") +
-        "-" +
-        String(
-            date.getDate()
-        ).padStart(2,"0")
-    );
-
-}
-
-
-function getAvailability(dateKey) {
-
-    const saved =
-        JSON.parse(
-            localStorage.getItem(
-                "thermaeSonAvailability"
-            ) || "{}"
-        );
-
-
-    return saved[dateKey] || null;
-
-}
-
-
-function setAvailability(
-    dateKey,
-    value
-) {
-
-    const saved =
-        JSON.parse(
-            localStorage.getItem(
-                "thermaeSonAvailability"
-            ) || "{}"
-        );
-
-
-    saved[dateKey] =
-        value;
-
-
-    localStorage.setItem(
-        "thermaeSonAvailability",
-        JSON.stringify(
-            saved
-        )
-    );
-
-
-    renderCalendar();
-
-}
-
-
-function applyAvailabilityStyle(
-    element,
-    dateKey
-) {
-
-    const value =
-        getAvailability(
-            dateKey
-        );
-
-
-    if (
-        value ===
-        "available"
-    ) {
-
-        element.classList.add(
-            "selected-available"
-        );
-
-    }
-
-
-    if (
-        value ===
-        "unavailable"
-    ) {
-
-        element.classList.add(
-            "selected-unavailable"
+            element
         );
 
     }
@@ -2538,27 +3150,83 @@ function applyAvailabilityStyle(
 
 
 /* =====================================================
-   START
+   ADMIN
    ===================================================== */
 
-loadData();
+function renderAdmin() {
 
-updateWorkingInterface();
+    const total =
+        services.reduce(
+            (
+                sum,
+                service
+            ) =>
+                sum +
+                service.netMinutes,
+            0
+        );
 
-updateDashboard();
 
-setupMonthSelector();
-
-renderHours();
-
-renderCalendar();
+    document.getElementById(
+        "adminHours"
+    ).textContent =
+        formatDuration(total);
 
 
-if (currentService) {
-
-    startTimer();
+    document.getElementById(
+        "adminServices"
+    ).textContent =
+        services.length;
 
 }
+
+
+/* =====================================================
+   START APP
+   ===================================================== */
+
+function checkSession() {
+
+    const saved =
+        localStorage.getItem(
+            SESSION_KEY
+        );
+
+
+    if (!saved) {
+
+        document.getElementById(
+            "loginScreen"
+        ).style.display =
+            "flex";
+
+        return;
+
+    }
+
+
+    try {
+
+        currentUser =
+            JSON.parse(
+                saved
+            );
+
+
+        showApp();
+
+    } catch {
+
+        localStorage.removeItem(
+            SESSION_KEY
+        );
+
+    }
+
+}
+
+
+checkSession();
 
 </script>
 
