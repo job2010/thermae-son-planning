@@ -3,561 +3,2562 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Thermae Son Planning</title>
 
 <style>
+:root {
+    --blue: #1261a0;
+    --blue-dark: #0b4778;
+    --blue-light: #eaf4fc;
+    --green: #168a55;
+    --green-light: #e9f8f0;
+    --red: #c93636;
+    --red-light: #fdecec;
+    --orange: #d77b16;
+    --text: #17212b;
+    --muted: #6d7a87;
+    --background: #f4f7fa;
+    --white: #ffffff;
+    --border: #e1e7ed;
+    --shadow: 0 8px 30px rgba(18, 38, 63, 0.08);
+}
+
 * {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f7fb;
-    color: #17212b;
+    background: var(--background);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-header {
-    background: linear-gradient(135deg, #1261a0, #1687c7);
-    color: white;
-    padding: 28px 22px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 27px;
-}
-
-header p {
-    margin: 7px 0 0;
-    opacity: .9;
-}
-
-.container {
-    width: 100%;
-    max-width: 1050px;
-    margin: auto;
-    padding: 22px;
-}
-
-.card {
-    background: white;
-    border-radius: 18px;
-    padding: 24px;
-    margin-bottom: 18px;
-    box-shadow: 0 6px 25px rgba(20, 40, 70, .08);
-}
-
-.auth-card {
-    max-width: 430px;
-    margin: 60px auto;
-}
-
-h1, h2 {
-    margin-top: 0;
-}
-
-label {
-    display: block;
-    margin-top: 12px;
-    font-weight: bold;
-}
-
-input {
-    width: 100%;
-    padding: 14px;
-    margin-top: 6px;
-    border: 1px solid #d6dee7;
-    border-radius: 11px;
-    font-size: 16px;
+button,
+input,
+select {
+    font: inherit;
 }
 
 button {
-    width: 100%;
-    border: 0;
-    border-radius: 11px;
-    padding: 14px;
-    margin-top: 12px;
-    background: #1261a0;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
     cursor: pointer;
 }
 
-button:hover {
-    opacity: .9;
+.app {
+    min-height: 100vh;
 }
 
-.secondary {
-    background: #e8eef4;
-    color: #17212b;
+/* HEADER */
+
+.header {
+    background: linear-gradient(135deg, #0d548d, #187ec0);
+    color: white;
+    padding: 24px 20px 28px;
 }
 
-.danger {
-    background: #c62828;
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 15px;
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
 
-.hidden {
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    opacity: 0.86;
+    font-size: 14px;
+}
+
+.profile-button {
+    width: auto;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.12);
+    color: white;
+    padding: 10px 14px;
+    border-radius: 11px;
+}
+
+/* CONTENT */
+
+.container {
+    width: min(1100px, calc(100% - 30px));
+    margin: 0 auto;
+    padding: 24px 0 110px;
+}
+
+.page {
     display: none;
 }
 
-.error {
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 10px;
-    background: #fdeaea;
-    color: #a71919;
+.page.active {
+    display: block;
 }
 
-.success {
-    margin-top: 15px;
-    padding: 12px;
-    border-radius: 10px;
-    background: #e8f7ed;
-    color: #176b35;
+/* DASHBOARD */
+
+.greeting {
+    margin-bottom: 20px;
 }
 
-.small {
-    color: #6b7785;
-    font-size: 14px;
+.greeting h2 {
+    margin: 0 0 5px;
+    font-size: 26px;
 }
 
-footer {
+.greeting p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* WORK CARD */
+
+.work-card {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
     text-align: center;
-    padding: 25px;
-    color: #6b7785;
+}
+
+.work-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #eef2f5;
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 8px 13px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8a969f;
+}
+
+.status-dot.active {
+    background: var(--green);
+}
+
+.work-date {
+    color: var(--muted);
+    margin-top: 18px;
+}
+
+.timer {
+    font-size: clamp(42px, 10vw, 72px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin: 12px 0 24px;
+}
+
+.start-button,
+.stop-button {
+    width: min(480px, 100%);
+    min-height: 82px;
+    border: 0;
+    border-radius: 18px;
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.start-button {
+    background: linear-gradient(135deg, #168a55, #21a96d);
+    box-shadow: 0 10px 25px rgba(22,138,85,0.22);
+}
+
+.stop-button {
+    background: linear-gradient(135deg, #bd2e2e, #df4747);
+    box-shadow: 0 10px 25px rgba(201,54,54,0.20);
+}
+
+.start-button:hover,
+.stop-button:hover {
+    transform: translateY(-2px);
+}
+
+.start-button:active,
+.stop-button:active {
+    transform: translateY(0);
+}
+
+/* STATS */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 9px;
+}
+
+.stat-value {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+/* CARDS */
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.card-title h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.card-title p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* SERVICE */
+
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.service {
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.service-main strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.service-main span {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.service-duration {
+    text-align: right;
+    font-weight: 800;
+}
+
+.service-duration small {
+    display: block;
+    color: var(--muted);
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.delete-button {
+    width: auto;
+    padding: 8px 10px;
+    border: 0;
+    background: var(--red-light);
+    color: var(--red);
+    border-radius: 9px;
+    font-size: 12px;
+}
+
+/* MONTH */
+
+.month-select {
+    width: auto;
+    min-width: 180px;
+    border: 1px solid var(--border);
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* NAVIGATION */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    z-index: 50;
+}
+
+.nav-inner {
+    max-width: 700px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.nav-button {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    padding: 11px 5px 10px;
+    font-size: 11px;
+}
+
+.nav-icon {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.nav-button.active {
+    color: var(--blue);
+    font-weight: 800;
+}
+
+/* BACK */
+
+.back-button {
+    width: auto;
+    border: 0;
+    background: transparent;
+    color: var(--blue);
+    font-weight: 800;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+/* CALENDAR */
+
+.calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+}
+
+.calendar-arrow {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 10px;
+    background: var(--blue-light);
+    color: var(--blue);
+    font-size: 20px;
+}
+
+.weekdays,
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
+}
+
+.weekday {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 5px;
+}
+
+.calendar-day {
+    min-height: 85px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: white;
+    padding: 9px;
+    position: relative;
+}
+
+.calendar-day.weekend {
+    background: #f7f8fa;
+}
+
+.calendar-day-number {
+    font-weight: 800;
     font-size: 14px;
+}
+
+.availability-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.availability-button {
+    border: 0;
+    border-radius: 7px;
+    padding: 5px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.available {
+    background: var(--green-light);
+    color: var(--green);
+}
+
+.unavailable {
+    background: var(--red-light);
+    color: var(--red);
+}
+
+.selected-available {
+    outline: 2px solid var(--green);
+}
+
+.selected-unavailable {
+    outline: 2px solid var(--red);
+}
+
+/* PROFILE */
+
+.profile-row {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-row:last-child {
+    border-bottom: 0;
+}
+
+.profile-label {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.profile-value {
+    font-weight: 700;
+}
+
+/* EMPTY */
+
+.empty {
+    text-align: center;
+    padding: 35px 15px;
+    color: var(--muted);
+}
+
+.empty-icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+/* NOTICE */
+
+.notice {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    border-radius: 14px;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .header {
+        padding: 20px 16px 23px;
+    }
+
+    .container {
+        width: min(100% - 20px, 1100px);
+        padding-top: 18px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .work-card {
+        padding: 24px 16px;
+    }
+
+    .service {
+        align-items: flex-start;
+    }
+
+    .calendar-day {
+        min-height: 70px;
+        padding: 6px;
+    }
+
+    .availability-buttons {
+        display: none;
+    }
+
+    .calendar-day {
+        cursor: pointer;
+    }
+
+    .calendar-day.selected-available::after {
+        content: "Beschikbaar";
+        display: block;
+        color: var(--green);
+        font-size: 9px;
+        margin-top: 5px;
+        font-weight: 800;
+    }
+
+    .calendar-day.selected-unavailable::after {
+        content: "Niet beschikbaar";
+        display: block;
+        color: var(--red);
+        font-size: 9px;
+        margin-top: 5px;
+        font-weight: 800;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .header-top {
+        align-items: flex-start;
+    }
+
+    .profile-button {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .greeting h2 {
+        font-size: 22px;
+    }
+
+    .timer {
+        font-size: 45px;
+    }
+
+    .start-button,
+    .stop-button {
+        min-height: 72px;
+        font-size: 20px;
+    }
+
+    .calendar {
+        gap: 4px;
+    }
+
+    .weekdays {
+        gap: 4px;
+    }
+
+    .calendar-day {
+        min-height: 58px;
+    }
+
+    .calendar-day-number {
+        font-size: 12px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div id="loginPage">
+<div class="app">
 
-    <div class="container">
+<header class="header">
+    <div class="header-inner">
 
-        <div class="card auth-card">
+        <div class="header-top">
 
-            <h1>Thermae Son Planning</h1>
+            <div class="logo-title">
 
-            <p class="small">
-                Log in om je planning en uren te bekijken.
-            </p>
+                <div class="logo">
+                    TS
+                </div>
 
-            <label>E-mailadres</label>
-            <input
-                id="loginEmail"
-                type="email"
-                placeholder="naam@email.nl"
-            >
+                <div>
+                    <h1>Thermae Son Planning</h1>
+                    <p>Planning en urenregistratie</p>
+                </div>
 
-            <label>Wachtwoord</label>
-            <input
-                id="loginPassword"
-                type="password"
-                placeholder="Wachtwoord"
-            >
+            </div>
 
-            <button id="loginButton">
-                Inloggen
+            <button
+                class="profile-button"
+                onclick="openPage('profile')">
+                Profiel
             </button>
-
-            <button class="secondary" id="showRegisterButton">
-                Account aanmaken
-            </button>
-
-            <div id="loginMessage"></div>
 
         </div>
 
     </div>
-
-</div>
-
-
-<div id="registerPage" class="hidden">
-
-    <div class="container">
-
-        <div class="card auth-card">
-
-            <h1>Account aanmaken</h1>
-
-            <p class="small">
-                Vul je gegevens in om een account te maken.
-            </p>
-
-            <label>Naam</label>
-            <input
-                id="registerName"
-                type="text"
-                placeholder="Voor- en achternaam"
-            >
-
-            <label>E-mailadres</label>
-            <input
-                id="registerEmail"
-                type="email"
-                placeholder="naam@email.nl"
-            >
-
-            <label>Wachtwoord</label>
-            <input
-                id="registerPassword"
-                type="password"
-                placeholder="Minimaal 6 tekens"
-            >
-
-            <label>Leeftijd</label>
-            <input
-                id="registerAge"
-                type="number"
-                min="13"
-                max="100"
-                placeholder="Leeftijd"
-            >
-
-            <button id="registerButton">
-                Account maken
-            </button>
-
-            <button class="secondary" id="backToLoginButton">
-                ← Terug naar inloggen
-            </button>
-
-            <div id="registerMessage"></div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div id="app" class="hidden">
-
-<header>
-    <h1>Thermae Son Planning</h1>
-    <p id="welcomeText">Welkom</p>
 </header>
+
 
 <main class="container">
 
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+    <div class="greeting">
+
+        <h2>Goedemorgen, Job</h2>
+
+        <p>
+            Houd je dienst en gewerkte uren eenvoudig bij.
+        </p>
+
+    </div>
+
+
+    <div class="work-card">
+
+        <div class="work-status" id="workStatus">
+
+            <span class="status-dot" id="statusDot"></span>
+
+            <span id="statusText">
+                Geen dienst bezig
+            </span>
+
+        </div>
+
+
+        <div class="work-date" id="workDate">
+            Vandaag
+        </div>
+
+
+        <div class="timer" id="liveTimer">
+            00:00:00
+        </div>
+
+
+        <div id="startArea">
+
+            <button
+                class="start-button"
+                onclick="startService()">
+
+                START DIENST
+
+            </button>
+
+            <p class="small">
+                Druk hier zodra je begint met werken.
+            </p>
+
+        </div>
+
+
+        <div id="stopArea" style="display:none;">
+
+            <button
+                class="stop-button"
+                onclick="stopService()">
+
+                STOP DIENST
+
+            </button>
+
+            <p class="small">
+                Je dienst wordt daarna automatisch opgeslagen.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Vandaag
+            </div>
+
+            <div
+                class="stat-value"
+                id="todayHours">
+                0 uur
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Deze maand
+            </div>
+
+            <div
+                class="stat-value"
+                id="monthHours">
+                0 uur
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Diensten deze maand
+            </div>
+
+            <div
+                class="stat-value"
+                id="monthServices">
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
     <div class="card">
-        <h2>Overzicht</h2>
-        <p id="userInfo"></p>
+
+        <div class="card-title">
+
+            <div>
+                <h2>Recente diensten</h2>
+                <p>Je laatst geregistreerde diensten</p>
+            </div>
+
+            <button
+                onclick="openPage('hours')"
+                style="width:auto; padding:10px 13px;">
+                Alles
+            </button>
+
+        </div>
+
+
+        <div
+            id="recentServices"
+            class="service-list">
+        </div>
+
     </div>
 
-    <div class="grid">
+</section>
 
-        <button>
-            Mijn rooster
-        </button>
 
-        <button>
-            Beschikbaarheid
-        </button>
+<!-- HOURS -->
 
-        <button>
-            Mijn uren
-        </button>
+<section id="hours" class="page">
 
-        <button>
-            Urenoverzicht
-        </button>
+    <button
+        class="back-button"
+        onclick="openPage('home')">
+        ← Overzicht
+    </button>
 
-    </div>
 
     <div class="card">
-        <button class="secondary" id="logoutButton">
-            Uitloggen
-        </button>
+
+        <div class="card-title">
+
+            <div>
+                <h2>Mijn uren</h2>
+                <p>Overzicht van al je gewerkte diensten</p>
+            </div>
+
+            <select
+                id="hoursMonth"
+                class="month-select"
+                onchange="renderHours()">
+            </select>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Gewerkt
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="selectedMonthHours">
+                    0 uur
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Pauze
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="selectedMonthBreak">
+                    0 min
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Diensten
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="selectedMonthServices">
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="hoursList"
+            class="service-list">
+        </div>
+
     </div>
+
+
+    <div class="card">
+
+        <h2>Urencorrectie</h2>
+
+        <div class="notice">
+
+            Gebruik dit overzicht wanneer je je gewerkte uren moet controleren
+            of doorgeven voor een urencorrectie.
+
+            <br><br>
+
+            Per dienst zie je de datum, begin- en eindtijd, pauze en netto
+            geregistreerde werktijd.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AVAILABILITY -->
+
+<section id="availability" class="page">
+
+    <button
+        class="back-button"
+        onclick="openPage('home')">
+        ← Overzicht
+    </button>
+
+
+    <div class="card">
+
+        <div class="calendar-header">
+
+            <button
+                class="calendar-arrow"
+                onclick="changeMonth(-1)">
+                ‹
+            </button>
+
+            <h2 id="calendarTitle">
+                Oktober 2026
+            </h2>
+
+            <button
+                class="calendar-arrow"
+                onclick="changeMonth(1)">
+                ›
+            </button>
+
+        </div>
+
+
+        <div class="notice">
+
+            Klik op een dag om je beschikbaarheid aan te geven.
+
+            <br>
+
+            Groen = beschikbaar.
+            Rood = niet beschikbaar.
+
+        </div>
+
+        <br>
+
+
+        <div class="weekdays">
+
+            <div class="weekday">Ma</div>
+            <div class="weekday">Di</div>
+            <div class="weekday">Wo</div>
+            <div class="weekday">Do</div>
+            <div class="weekday">Vr</div>
+            <div class="weekday">Za</div>
+            <div class="weekday">Zo</div>
+
+        </div>
+
+
+        <div
+            id="calendar"
+            class="calendar">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCHEDULE -->
+
+<section id="schedule" class="page">
+
+    <button
+        class="back-button"
+        onclick="openPage('home')">
+        ← Overzicht
+    </button>
+
+
+    <div class="card">
+
+        <div class="card-title">
+
+            <div>
+                <h2>Mijn rooster</h2>
+                <p>Je geplande diensten</p>
+            </div>
+
+        </div>
+
+
+        <div class="empty">
+
+            <div class="empty-icon">
+                📅
+            </div>
+
+            <strong>
+                Nog geen diensten gepland
+            </strong>
+
+            <p>
+                Je rooster verschijnt hier zodra de planning is toegevoegd.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+    <button
+        class="back-button"
+        onclick="openPage('home')">
+        ← Overzicht
+    </button>
+
+
+    <div class="card">
+
+        <div class="card-title">
+
+            <div>
+                <h2>Mijn profiel</h2>
+                <p>Je persoonlijke gegevens</p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <div class="profile-label">
+                Naam
+            </div>
+
+            <div class="profile-value">
+                Job van der Kruijssen
+            </div>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <div class="profile-label">
+                Leeftijd
+            </div>
+
+            <div class="profile-value">
+                Nog niet ingesteld
+            </div>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <div class="profile-label">
+                Rol
+            </div>
+
+            <div class="profile-value">
+                Medewerker
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>Pauze-informatie</h2>
+
+        <p class="small">
+            Je leeftijd wordt later gekoppeld aan de automatische
+            pauzeberekening. Je hoeft tijdens een dienst geen pauzeknop
+            te gebruiken.
+        </p>
+
+    </div>
+
+</section>
 
 </main>
 
-<footer>
-    Thermae Son Planning<br>
-    Gemaakt door Job van der Kruijssen
-</footer>
+
+<nav class="bottom-nav">
+
+    <div class="nav-inner">
+
+        <button
+            class="nav-button active"
+            data-page="home"
+            onclick="openPage('home')">
+
+            <span class="nav-icon">⌂</span>
+            Overzicht
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="hours"
+            onclick="openPage('hours')">
+
+            <span class="nav-icon">◷</span>
+            Mijn uren
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="availability"
+            onclick="openPage('availability')">
+
+            <span class="nav-icon">✓</span>
+            Beschikbaar
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="schedule"
+            onclick="openPage('schedule')">
+
+            <span class="nav-icon">▣</span>
+            Rooster
+
+        </button>
+
+    </div>
+
+</nav>
 
 </div>
 
 
-<script type="module">
+<script>
 
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+/* =====================================================
+   BASISGEGEVENS
+   ===================================================== */
 
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+const STORAGE_KEY = "thermaeSonPlanning_v2";
 
-import {
-    getFirestore,
-    doc,
-    setDoc,
-    getDoc
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+let services = [];
+
+let currentService = null;
+
+let timerInterval = null;
+
+let calendarDate = new Date(2026, 9, 1);
 
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCLOZzmLUomH5hElTNNA0ORJC-3rQVOZc",
-    authDomain: "thermae-son-planning.firebaseapp.com",
-    projectId: "thermae-son-planning",
-    storageBucket: "thermae-son-planning.firebasestorage.app",
-    messagingSenderId: "677357840589",
-    appId: "1:677357840589:web:28d927ada7e2b3205c2184",
-    measurementId: "G-XEZN28H833"
-};
+/* =====================================================
+   OPSLAG
+   ===================================================== */
+
+function saveData() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+            services: services,
+            currentService: currentService
+        })
+    );
+
+}
 
 
-const app = initializeApp(firebaseConfig);
+function loadData() {
 
-const auth = getAuth(app);
+    const saved =
+        localStorage.getItem(STORAGE_KEY);
 
-const db = getFirestore(app);
+    if (!saved) {
+        return;
+    }
+
+    try {
+
+        const data =
+            JSON.parse(saved);
+
+        services =
+            Array.isArray(data.services)
+                ? data.services
+                : [];
+
+        currentService =
+            data.currentService || null;
+
+    } catch {
+
+        services = [];
+        currentService = null;
+
+    }
+
+}
 
 
-const loginPage =
-    document.getElementById("loginPage");
+/* =====================================================
+   PAGINA'S
+   ===================================================== */
 
-const registerPage =
-    document.getElementById("registerPage");
+function openPage(page) {
 
-const appPage =
-    document.getElementById("app");
+    document
+        .querySelectorAll(".page")
+        .forEach(element => {
+            element.classList.remove("active");
+        });
 
 
-document
-    .getElementById("showRegisterButton")
-    .addEventListener("click", () => {
+    const selected =
+        document.getElementById(page);
 
-        loginPage.classList.add("hidden");
+    if (selected) {
+        selected.classList.add("active");
+    }
 
-        registerPage.classList.remove("hidden");
 
+    document
+        .querySelectorAll(".nav-button")
+        .forEach(button => {
+
+            button.classList.remove("active");
+
+            if (
+                button.dataset.page === page
+            ) {
+                button.classList.add("active");
+            }
+
+        });
+
+
+    if (page === "hours") {
+        setupMonthSelector();
+        renderHours();
+    }
+
+
+    if (page === "availability") {
+        renderCalendar();
+    }
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
 
-
-document
-    .getElementById("backToLoginButton")
-    .addEventListener("click", () => {
-
-        registerPage.classList.add("hidden");
-
-        loginPage.classList.remove("hidden");
-
-    });
+}
 
 
-document
-    .getElementById("loginButton")
-    .addEventListener("click", async () => {
+/* =====================================================
+   DATUM EN TIJD
+   ===================================================== */
 
-        const email =
-            document.getElementById("loginEmail").value.trim();
+function formatDate(date) {
 
-        const password =
-            document.getElementById("loginPassword").value;
-
-        const message =
-            document.getElementById("loginMessage");
-
-
-        message.innerHTML = "";
-
-
-        try {
-
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-        } catch (error) {
-
-            message.innerHTML =
-                `<div class="error">
-                    Inloggen mislukt. Controleer je e-mailadres en wachtwoord.
-                </div>`;
-
+    return new Intl.DateTimeFormat(
+        "nl-NL",
+        {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
         }
+    ).format(date);
 
-    });
-
-
-document
-    .getElementById("registerButton")
-    .addEventListener("click", async () => {
-
-        const name =
-            document.getElementById("registerName").value.trim();
-
-        const email =
-            document.getElementById("registerEmail").value.trim();
-
-        const password =
-            document.getElementById("registerPassword").value;
-
-        const age =
-            Number(
-                document.getElementById("registerAge").value
-            );
-
-        const message =
-            document.getElementById("registerMessage");
+}
 
 
-        message.innerHTML = "";
+function formatShortDate(date) {
 
-
-        if (!name || !email || !password || !age) {
-
-            message.innerHTML =
-                `<div class="error">
-                    Vul alle velden in.
-                </div>`;
-
-            return;
-
+    return new Intl.DateTimeFormat(
+        "nl-NL",
+        {
+            weekday: "long",
+            day: "numeric",
+            month: "long"
         }
+    ).format(date);
+
+}
 
 
-        if (password.length < 6) {
+function formatTime(date) {
 
-            message.innerHTML =
-                `<div class="error">
-                    Je wachtwoord moet minimaal 6 tekens bevatten.
-                </div>`;
-
-            return;
-
+    return new Intl.DateTimeFormat(
+        "nl-NL",
+        {
+            hour: "2-digit",
+            minute: "2-digit"
         }
+    ).format(date);
+
+}
 
 
-        try {
+function formatDuration(minutes) {
 
-            const credential =
-                await createUserWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
+    const safe =
+        Math.max(0, Math.round(minutes));
 
+    const hours =
+        Math.floor(safe / 60);
 
-            await setDoc(
-                doc(
-                    db,
-                    "users",
-                    credential.user.uid
-                ),
-                {
-                    naam: name,
-                    email: email,
-                    leeftijd: age,
-                    rol: "medewerker",
-                    aangemaaktOp:
-                        new Date().toISOString()
-                }
-            );
+    const mins =
+        safe % 60;
 
 
-            message.innerHTML =
-                `<div class="success">
-                    Account aangemaakt.
-                </div>`;
+    if (hours === 0) {
+        return `${mins} min`;
+    }
+
+    if (mins === 0) {
+        return `${hours} uur`;
+    }
+
+    return `${hours} uur ${mins} min`;
+
+}
 
 
-        } catch (error) {
+/* =====================================================
+   PAUZE
+   ===================================================== */
 
-            message.innerHTML =
-                `<div class="error">
-                    Account maken mislukt: ${error.message}
-                </div>`;
+/*
+   De app bewaart de volledige diensttijd.
+   De netto werktijd wordt apart berekend.
 
-        }
+   De exacte pauzeregel wordt later gekoppeld aan
+   het leeftijdsprofiel en de actuele regels.
+*/
 
-    });
+function calculateBreakMinutes(totalMinutes) {
+
+    /*
+       Basis voor deze versie:
+
+       Minder dan 4,5 uur:
+       0 minuten.
+
+       Vanaf 4,5 uur:
+       30 minuten.
+
+       De definitieve leeftijdsregels koppelen we later
+       aan het profiel.
+    */
+
+    if (totalMinutes < 270) {
+        return 0;
+    }
+
+    return 30;
+
+}
 
 
-document
-    .getElementById("logoutButton")
-    .addEventListener("click", async () => {
+/* =====================================================
+   DIENST STARTEN
+   ===================================================== */
 
-        await signOut(auth);
+function startService() {
 
-    });
+    if (currentService) {
+        return;
+    }
 
 
-onAuthStateChanged(auth, async (user) => {
+    const now =
+        new Date();
 
-    if (!user) {
 
-        loginPage.classList.remove("hidden");
+    currentService = {
 
-        registerPage.classList.add("hidden");
+        start:
+            now.toISOString(),
 
-        appPage.classList.add("hidden");
+        date:
+            now.toISOString().split("T")[0]
+
+    };
+
+
+    saveData();
+
+    updateWorkingInterface();
+
+    startTimer();
+
+}
+
+
+/* =====================================================
+   DIENST STOPPEN
+   ===================================================== */
+
+function stopService() {
+
+    if (!currentService) {
+        return;
+    }
+
+
+    const end =
+        new Date();
+
+
+    const start =
+        new Date(currentService.start);
+
+
+    const totalMinutes =
+        Math.floor(
+            (end - start) / 60000
+        );
+
+
+    if (totalMinutes <= 0) {
+
+        alert(
+            "De dienst is te kort om op te slaan."
+        );
 
         return;
 
     }
 
 
-    const userReference =
-        doc(db, "users", user.uid);
+    const breakMinutes =
+        calculateBreakMinutes(
+            totalMinutes
+        );
 
 
-    const userSnapshot =
-        await getDoc(userReference);
+    const netMinutes =
+        Math.max(
+            0,
+            totalMinutes - breakMinutes
+        );
 
 
-    let userData = {};
+    const service = {
+
+        id:
+            Date.now(),
+
+        start:
+            start.toISOString(),
+
+        end:
+            end.toISOString(),
+
+        totalMinutes:
+            totalMinutes,
+
+        breakMinutes:
+            breakMinutes,
+
+        netMinutes:
+            netMinutes
+
+    };
 
 
-    if (userSnapshot.exists()) {
+    services.unshift(service);
 
-        userData = userSnapshot.data();
+
+    currentService = null;
+
+
+    saveData();
+
+
+    stopTimer();
+
+    updateWorkingInterface();
+
+    updateDashboard();
+
+
+    alert(
+        "Je dienst is opgeslagen in je urenoverzicht."
+    );
+
+}
+
+
+/* =====================================================
+   LIVE TIMER
+   ===================================================== */
+
+function startTimer() {
+
+    stopTimer();
+
+    timerInterval =
+        setInterval(
+            updateTimer,
+            1000
+        );
+
+    updateTimer();
+
+}
+
+
+function stopTimer() {
+
+    if (timerInterval) {
+
+        clearInterval(
+            timerInterval
+        );
+
+        timerInterval = null;
+
+    }
+
+}
+
+
+function updateTimer() {
+
+    const timer =
+        document.getElementById(
+            "liveTimer"
+        );
+
+
+    if (!currentService) {
+
+        timer.textContent =
+            "00:00:00";
+
+        return;
 
     }
 
 
-    loginPage.classList.add("hidden");
-
-    registerPage.classList.add("hidden");
-
-    appPage.classList.remove("hidden");
-
-
-    document
-        .getElementById("welcomeText")
-        .textContent =
-        "Welkom, " +
-        (userData.naam || "medewerker");
+    const start =
+        new Date(
+            currentService.start
+        );
 
 
-    document
-        .getElementById("userInfo")
-        .textContent =
-        "Ingelogd als " +
-        (userData.rol || "medewerker");
+    const now =
+        new Date();
 
-});
+
+    const seconds =
+        Math.max(
+            0,
+            Math.floor(
+                (now - start) / 1000
+            )
+        );
+
+
+    const hours =
+        Math.floor(
+            seconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+
+    const secs =
+        seconds % 60;
+
+
+    timer.textContent =
+        `${String(hours).padStart(2,"0")}:` +
+        `${String(minutes).padStart(2,"0")}:` +
+        `${String(secs).padStart(2,"0")}`;
+
+}
+
+
+/* =====================================================
+   WERKSTATUS
+   ===================================================== */
+
+function updateWorkingInterface() {
+
+    const statusText =
+        document.getElementById(
+            "statusText"
+        );
+
+    const statusDot =
+        document.getElementById(
+            "statusDot"
+        );
+
+    const startArea =
+        document.getElementById(
+            "startArea"
+        );
+
+    const stopArea =
+        document.getElementById(
+            "stopArea"
+        );
+
+    const workDate =
+        document.getElementById(
+            "workDate"
+        );
+
+
+    if (currentService) {
+
+        const start =
+            new Date(
+                currentService.start
+            );
+
+
+        statusText.textContent =
+            "Dienst bezig";
+
+
+        statusDot.classList.add(
+            "active"
+        );
+
+
+        startArea.style.display =
+            "none";
+
+
+        stopArea.style.display =
+            "block";
+
+
+        workDate.textContent =
+            "Gestart op " +
+            formatDate(start) +
+            " om " +
+            formatTime(start);
+
+
+        startTimer();
+
+    } else {
+
+        statusText.textContent =
+            "Geen dienst bezig";
+
+
+        statusDot.classList.remove(
+            "active"
+        );
+
+
+        startArea.style.display =
+            "block";
+
+
+        stopArea.style.display =
+            "none";
+
+
+        workDate.textContent =
+            formatDate(
+                new Date()
+            );
+
+
+        stopTimer();
+
+    }
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+   ===================================================== */
+
+function getCurrentMonthServices() {
+
+    const now =
+        new Date();
+
+
+    return services.filter(
+        service => {
+
+            const date =
+                new Date(
+                    service.start
+                );
+
+
+            return (
+                date.getFullYear() ===
+                    now.getFullYear()
+                &&
+                date.getMonth() ===
+                    now.getMonth()
+            );
+
+        }
+    );
+
+}
+
+
+function updateDashboard() {
+
+    const now =
+        new Date();
+
+
+    const monthServices =
+        getCurrentMonthServices();
+
+
+    const monthMinutes =
+        monthServices.reduce(
+            (
+                total,
+                service
+            ) =>
+                total +
+                service.netMinutes,
+            0
+        );
+
+
+    const todayKey =
+        now.toISOString()
+            .split("T")[0];
+
+
+    const todayMinutes =
+        services
+            .filter(
+                service =>
+                    service.start
+                        .startsWith(
+                            todayKey
+                        )
+            )
+            .reduce(
+                (
+                    total,
+                    service
+                ) =>
+                    total +
+                    service.netMinutes,
+                0
+            );
+
+
+    document.getElementById(
+        "todayHours"
+    ).textContent =
+        formatDuration(
+            todayMinutes
+        );
+
+
+    document.getElementById(
+        "monthHours"
+    ).textContent =
+        formatDuration(
+            monthMinutes
+        );
+
+
+    document.getElementById(
+        "monthServices"
+    ).textContent =
+        monthServices.length;
+
+
+    renderRecentServices();
+
+}
+
+
+function renderRecentServices() {
+
+    const container =
+        document.getElementById(
+            "recentServices"
+        );
+
+
+    const recent =
+        services.slice(
+            0,
+            5
+        );
+
+
+    if (recent.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">◷</div>
+                <strong>Nog geen diensten</strong>
+                <p>
+                    Je eerste dienst verschijnt hier
+                    zodra je op START DIENST drukt.
+                </p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        recent
+            .map(
+                service =>
+                    createServiceHTML(
+                        service,
+                        false
+                    )
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   DIENST HTML
+   ===================================================== */
+
+function createServiceHTML(
+    service,
+    showDelete
+) {
+
+    const start =
+        new Date(
+            service.start
+        );
+
+
+    const end =
+        new Date(
+            service.end
+        );
+
+
+    const deleteButton =
+        showDelete
+            ? `
+                <button
+                    class="delete-button"
+                    onclick="deleteService(${service.id})">
+                    Verwijderen
+                </button>
+              `
+            : "";
+
+
+    return `
+        <div class="service">
+
+            <div class="service-main">
+
+                <strong>
+                    ${formatShortDate(start)}
+                </strong>
+
+                <span>
+                    ${formatTime(start)}
+                    tot
+                    ${formatTime(end)}
+                </span>
+
+                ${deleteButton}
+
+            </div>
+
+
+            <div class="service-duration">
+
+                ${formatDuration(
+                    service.netMinutes
+                )}
+
+                <small>
+                    Pauze:
+                    ${service.breakMinutes} min
+                </small>
+
+            </div>
+
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   MAANDSELECTIE
+   ===================================================== */
+
+function setupMonthSelector() {
+
+    const select =
+        document.getElementById(
+            "hoursMonth"
+        );
+
+
+    const existing =
+        select.value;
+
+
+    const months =
+        new Map();
+
+
+    services.forEach(
+        service => {
+
+            const date =
+                new Date(
+                    service.start
+                );
+
+
+            const key =
+                `${date.getFullYear()}-${String(
+                    date.getMonth() + 1
+                ).padStart(2,"0")}`;
+
+
+            months.set(
+                key,
+                new Date(
+                    date.getFullYear(),
+                    date.getMonth(),
+                    1
+                )
+            );
+
+        }
+    );
+
+
+    const now =
+        new Date();
+
+
+    const currentKey =
+        `${now.getFullYear()}-${String(
+            now.getMonth() + 1
+        ).padStart(2,"0")}`;
+
+
+    months.set(
+        currentKey,
+        new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            1
+        )
+    );
+
+
+    const sorted =
+        Array.from(
+            months.entries()
+        ).sort(
+            (a,b) =>
+                b[1] - a[1]
+        );
+
+
+    select.innerHTML =
+        sorted
+            .map(
+                ([key,date]) => `
+                    <option value="${key}">
+                        ${new Intl.DateTimeFormat(
+                            "nl-NL",
+                            {
+                                month:"long",
+                                year:"numeric"
+                            }
+                        ).format(date)}
+                    </option>
+                `
+            )
+            .join("");
+
+
+    if (
+        existing &&
+        sorted.some(
+            item =>
+                item[0] === existing
+        )
+    ) {
+
+        select.value =
+            existing;
+
+    }
+
+}
+
+
+/* =====================================================
+   URENOVERZICHT
+   ===================================================== */
+
+function renderHours() {
+
+    const select =
+        document.getElementById(
+            "hoursMonth"
+        );
+
+
+    if (!select.value) {
+        return;
+    }
+
+
+    const [year, month] =
+        select.value
+            .split("-")
+            .map(Number);
+
+
+    const filtered =
+        services.filter(
+            service => {
+
+                const date =
+                    new Date(
+                        service.start
+                    );
+
+
+                return (
+                    date.getFullYear() ===
+                        year
+                    &&
+                    date.getMonth() + 1 ===
+                        month
+                );
+
+            }
+        );
+
+
+    const totalMinutes =
+        filtered.reduce(
+            (
+                total,
+                service
+            ) =>
+                total +
+                service.netMinutes,
+            0
+        );
+
+
+    const breakMinutes =
+        filtered.reduce(
+            (
+                total,
+                service
+            ) =>
+                total +
+                service.breakMinutes,
+            0
+        );
+
+
+    document.getElementById(
+        "selectedMonthHours"
+    ).textContent =
+        formatDuration(
+            totalMinutes
+        );
+
+
+    document.getElementById(
+        "selectedMonthBreak"
+    ).textContent =
+        formatDuration(
+            breakMinutes
+        );
+
+
+    document.getElementById(
+        "selectedMonthServices"
+    ).textContent =
+        filtered.length;
+
+
+    const list =
+        document.getElementById(
+            "hoursList"
+        );
+
+
+    if (filtered.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">◷</div>
+                <strong>Geen diensten gevonden</strong>
+                <p>
+                    Er zijn geen geregistreerde diensten
+                    in deze maand.
+                </p>
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        filtered
+            .map(
+                service =>
+                    createServiceHTML(
+                        service,
+                        true
+                    )
+            )
+            .join("");
+
+}
+
+
+/* =====================================================
+   DIENST VERWIJDEREN
+   ===================================================== */
+
+function deleteService(id) {
+
+    const confirmed =
+        confirm(
+            "Weet je zeker dat je deze dienst wilt verwijderen?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    services =
+        services.filter(
+            service =>
+                service.id !== id
+        );
+
+
+    saveData();
+
+    updateDashboard();
+
+    renderHours();
+
+}
+
+
+/* =====================================================
+   KALENDER
+   ===================================================== */
+
+function changeMonth(direction) {
+
+    calendarDate =
+        new Date(
+            calendarDate.getFullYear(),
+            calendarDate.getMonth() + direction,
+            1
+        );
+
+
+    renderCalendar();
+
+}
+
+
+function renderCalendar() {
+
+    const year =
+        calendarDate.getFullYear();
+
+
+    const month =
+        calendarDate.getMonth();
+
+
+    document.getElementById(
+        "calendarTitle"
+    ).textContent =
+        new Intl.DateTimeFormat(
+            "nl-NL",
+            {
+                month: "long",
+                year: "numeric"
+            }
+        ).format(
+            calendarDate
+        );
+
+
+    const calendar =
+        document.getElementById(
+            "calendar"
+        );
+
+
+    calendar.innerHTML = "";
+
+
+    const firstDay =
+        new Date(
+            year,
+            month,
+            1
+        );
+
+
+    let startingDay =
+        firstDay.getDay();
+
+
+    if (startingDay === 0) {
+        startingDay = 7;
+    }
+
+
+    const daysInMonth =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+
+    for (
+        let i = 1;
+        i < startingDay;
+        i++
+    ) {
+
+        const empty =
+            document.createElement(
+                "div"
+            );
+
+        calendar.appendChild(
+            empty
+        );
+
+    }
+
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const date =
+            new Date(
+                year,
+                month,
+                day
+            );
+
+
+        const dateKey =
+            getDateKey(date);
+
+
+        const dayElement =
+            document.createElement(
+                "div"
+            );
+
+
+        dayElement.className =
+            "calendar-day";
+
+
+        if (
+            date.getDay() === 0 ||
+            date.getDay() === 6
+        ) {
+
+            dayElement.classList.add(
+                "weekend"
+            );
+
+        }
+
+
+        dayElement.innerHTML = `
+            <div class="calendar-day-number">
+                ${day}
+            </div>
+
+            <div class="availability-buttons">
+
+                <button
+                    class="availability-button available"
+                    onclick="setAvailability('${dateKey}', 'available')">
+                    Beschikbaar
+                </button>
+
+                <button
+                    class="availability-button unavailable"
+                    onclick="setAvailability('${dateKey}', 'unavailable')">
+                    Niet beschikbaar
+                </button>
+
+            </div>
+        `;
+
+
+        dayElement.addEventListener(
+            "click",
+            function(event) {
+
+                if (
+                    event.target.tagName ===
+                    "BUTTON"
+                ) {
+                    return;
+                }
+
+
+                const current =
+                    getAvailability(
+                        dateKey
+                    );
+
+
+                if (
+                    current ===
+                    "available"
+                ) {
+
+                    setAvailability(
+                        dateKey,
+                        "unavailable"
+                    );
+
+                } else {
+
+                    setAvailability(
+                        dateKey,
+                        "available"
+                    );
+
+                }
+
+            }
+        );
+
+
+        applyAvailabilityStyle(
+            dayElement,
+            dateKey
+        );
+
+
+        calendar.appendChild(
+            dayElement
+        );
+
+    }
+
+}
+
+
+function getDateKey(date) {
+
+    return (
+        date.getFullYear() +
+        "-" +
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0") +
+        "-" +
+        String(
+            date.getDate()
+        ).padStart(2,"0")
+    );
+
+}
+
+
+function getAvailability(dateKey) {
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "thermaeSonAvailability"
+            ) || "{}"
+        );
+
+
+    return saved[dateKey] || null;
+
+}
+
+
+function setAvailability(
+    dateKey,
+    value
+) {
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "thermaeSonAvailability"
+            ) || "{}"
+        );
+
+
+    saved[dateKey] =
+        value;
+
+
+    localStorage.setItem(
+        "thermaeSonAvailability",
+        JSON.stringify(
+            saved
+        )
+    );
+
+
+    renderCalendar();
+
+}
+
+
+function applyAvailabilityStyle(
+    element,
+    dateKey
+) {
+
+    const value =
+        getAvailability(
+            dateKey
+        );
+
+
+    if (
+        value ===
+        "available"
+    ) {
+
+        element.classList.add(
+            "selected-available"
+        );
+
+    }
+
+
+    if (
+        value ===
+        "unavailable"
+    ) {
+
+        element.classList.add(
+            "selected-unavailable"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+   ===================================================== */
+
+loadData();
+
+updateWorkingInterface();
+
+updateDashboard();
+
+setupMonthSelector();
+
+renderHours();
+
+renderCalendar();
+
+
+if (currentService) {
+
+    startTimer();
+
+}
 
 </script>
 
