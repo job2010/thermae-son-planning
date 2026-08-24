@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 27px;
 }
 
 header p {
@@ -34,7 +34,8 @@ header p {
 }
 
 .container {
-    max-width: 1100px;
+    width: 100%;
+    max-width: 1050px;
     margin: auto;
     padding: 22px;
 }
@@ -42,40 +43,46 @@ header p {
 .card {
     background: white;
     border-radius: 18px;
-    padding: 22px;
+    padding: 24px;
     margin-bottom: 18px;
-    box-shadow: 0 6px 24px rgba(20, 40, 70, .08);
+    box-shadow: 0 6px 25px rgba(20, 40, 70, .08);
 }
 
-.login-card {
+.auth-card {
     max-width: 430px;
-    margin: 55px auto;
+    margin: 60px auto;
 }
 
-h2 {
+h1, h2 {
     margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
 }
 
 input {
     width: 100%;
     padding: 14px;
-    border: 1px solid #d8e0e8;
-    border-radius: 10px;
+    margin-top: 6px;
+    border: 1px solid #d6dee7;
+    border-radius: 11px;
     font-size: 16px;
-    margin: 7px 0 14px;
 }
 
 button {
     width: 100%;
-    padding: 14px;
     border: 0;
     border-radius: 11px;
+    padding: 14px;
+    margin-top: 12px;
     background: #1261a0;
     color: white;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 8px;
 }
 
 button:hover {
@@ -83,7 +90,7 @@ button:hover {
 }
 
 .secondary {
-    background: #e9f0f6;
+    background: #e8eef4;
     color: #17212b;
 }
 
@@ -91,68 +98,42 @@ button:hover {
     background: #c62828;
 }
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 15px;
+}
+
 .hidden {
     display: none;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-}
-
-.stat {
-    font-size: 26px;
-    font-weight: bold;
-}
-
-.small {
-    color: #6c7884;
-    font-size: 14px;
-}
-
 .error {
-    background: #fdecec;
-    color: #a61b1b;
+    margin-top: 15px;
     padding: 12px;
     border-radius: 10px;
-    margin-top: 12px;
+    background: #fdeaea;
+    color: #a71919;
 }
 
 .success {
-    background: #e9f8ee;
-    color: #176b35;
+    margin-top: 15px;
     padding: 12px;
     border-radius: 10px;
-    margin-top: 12px;
+    background: #e8f7ed;
+    color: #176b35;
 }
 
-.timer {
-    text-align: center;
-    font-size: 42px;
-    font-weight: bold;
-    margin: 25px 0;
+.small {
+    color: #6b7785;
+    font-size: 14px;
 }
 
 footer {
     text-align: center;
     padding: 25px;
-    color: #6c7884;
+    color: #6b7785;
     font-size: 14px;
-}
-
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 23px;
-    }
-
-    .container {
-        padding: 14px;
-    }
-
-    .timer {
-        font-size: 32px;
-    }
 }
 </style>
 </head>
@@ -163,7 +144,7 @@ footer {
 
     <div class="container">
 
-        <div class="card login-card">
+        <div class="card auth-card">
 
             <h1>Thermae Son Planning</h1>
 
@@ -172,20 +153,28 @@ footer {
             </p>
 
             <label>E-mailadres</label>
-            <input id="email" type="email" placeholder="naam@email.nl">
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="naam@email.nl"
+            >
 
             <label>Wachtwoord</label>
-            <input id="password" type="password" placeholder="Wachtwoord">
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Wachtwoord"
+            >
 
-            <button onclick="login()">
+            <button id="loginButton">
                 Inloggen
             </button>
 
-            <button class="secondary" onclick="showRegister()">
+            <button class="secondary" id="showRegisterButton">
                 Account aanmaken
             </button>
 
-            <div id="loginError"></div>
+            <div id="loginMessage"></div>
 
         </div>
 
@@ -198,31 +187,53 @@ footer {
 
     <div class="container">
 
-        <div class="card login-card">
+        <div class="card auth-card">
 
-            <h2>Account aanmaken</h2>
+            <h1>Account aanmaken</h1>
+
+            <p class="small">
+                Vul je gegevens in om een account te maken.
+            </p>
 
             <label>Naam</label>
-            <input id="registerName" type="text" placeholder="Voor- en achternaam">
+            <input
+                id="registerName"
+                type="text"
+                placeholder="Voor- en achternaam"
+            >
 
             <label>E-mailadres</label>
-            <input id="registerEmail" type="email" placeholder="naam@email.nl">
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="naam@email.nl"
+            >
 
             <label>Wachtwoord</label>
-            <input id="registerPassword" type="password" placeholder="Wachtwoord">
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="Minimaal 6 tekens"
+            >
 
             <label>Leeftijd</label>
-            <input id="registerAge" type="number" min="13" max="100" placeholder="Leeftijd">
+            <input
+                id="registerAge"
+                type="number"
+                min="13"
+                max="100"
+                placeholder="Leeftijd"
+            >
 
-            <button onclick="registerUser()">
+            <button id="registerButton">
                 Account maken
             </button>
 
-            <button class="secondary" onclick="showLogin()">
+            <button class="secondary" id="backToLoginButton">
                 ← Terug naar inloggen
             </button>
 
-            <div id="registerError"></div>
+            <div id="registerMessage"></div>
 
         </div>
 
@@ -247,97 +258,26 @@ footer {
 
     <div class="grid">
 
-        <button onclick="startService()">
-            START DIENST
-        </button>
-
-        <button onclick="showPage('hours')">
-            Mijn uren
-        </button>
-
-        <button onclick="showPage('availability')">
-            Beschikbaarheid
-        </button>
-
-        <button onclick="showPage('schedule')">
+        <button>
             Mijn rooster
         </button>
 
-    </div>
+        <button>
+            Beschikbaarheid
+        </button>
 
-    <div id="serviceCard" class="card hidden">
+        <button>
+            Mijn uren
+        </button>
 
-        <h2>Huidige dienst</h2>
-
-        <p>
-            Gestart om:
-            <strong id="serviceStart"></strong>
-        </p>
-
-        <div id="timer" class="timer">
-            00:00:00
-        </div>
-
-        <button class="danger" onclick="stopService()">
-            STOP DIENST
+        <button>
+            Urenoverzicht
         </button>
 
     </div>
-
-
-    <section id="hours" class="card hidden">
-
-        <button class="secondary" onclick="showPage('home')">
-            ← Overzicht
-        </button>
-
-        <h2>Mijn uren</h2>
-
-        <p class="stat" id="totalHours">
-            0 uur 0 min
-        </p>
-
-        <div id="history"></div>
-
-    </section>
-
-
-    <section id="availability" class="card hidden">
-
-        <button class="secondary" onclick="showPage('home')">
-            ← Overzicht
-        </button>
-
-        <h2>Beschikbaarheid</h2>
-
-        <p>
-            Vanaf oktober 2026.
-        </p>
-
-        <p class="small">
-            De kalender wordt later gekoppeld aan Firebase.
-        </p>
-
-    </section>
-
-
-    <section id="schedule" class="card hidden">
-
-        <button class="secondary" onclick="showPage('home')">
-            ← Overzicht
-        </button>
-
-        <h2>Mijn rooster</h2>
-
-        <p class="small">
-            Je rooster verschijnt hier zodra de beheerder het heeft ingevoerd.
-        </p>
-
-    </section>
-
 
     <div class="card">
-        <button class="secondary" onclick="logout()">
+        <button class="secondary" id="logoutButton">
             Uitloggen
         </button>
     </div>
@@ -374,30 +314,16 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-/* ================================
-   JOUW FIREBASE CONFIGURATIE
-   ================================ */
-
 const firebaseConfig = {
-
-    apiKey: "VUL_HIER_JOUW_API_KEY_IN",
-
+    apiKey: "AIzaSyCLOZzmLUomH5hElTNNA0ORJC-3rQVOZc",
     authDomain: "thermae-son-planning.firebaseapp.com",
-
     projectId: "thermae-son-planning",
-
     storageBucket: "thermae-son-planning.firebasestorage.app",
-
     messagingSenderId: "677357840589",
-
-    appId: "VUL_HIER_JOUW_APP_ID_IN",
-
-    measurementId: "VUL_HIER_JOUW_MEASUREMENT_ID_IN"
-
+    appId: "1:677357840589:web:28d927ada7e2b3205c2184",
+    measurementId: "G-XEZN28H833"
 };
 
-
-/* ================================ */
 
 const app = initializeApp(firebaseConfig);
 
@@ -406,191 +332,223 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-let timerInterval = null;
-let startTime = null;
+const loginPage =
+    document.getElementById("loginPage");
+
+const registerPage =
+    document.getElementById("registerPage");
+
+const appPage =
+    document.getElementById("app");
 
 
-window.showRegister = function() {
+document
+    .getElementById("showRegisterButton")
+    .addEventListener("click", () => {
 
-    document.getElementById("loginPage").classList.add("hidden");
+        loginPage.classList.add("hidden");
 
-    document.getElementById("registerPage").classList.remove("hidden");
+        registerPage.classList.remove("hidden");
 
-};
-
-
-window.showLogin = function() {
-
-    document.getElementById("registerPage").classList.add("hidden");
-
-    document.getElementById("loginPage").classList.remove("hidden");
-
-};
+    });
 
 
-window.login = async function() {
+document
+    .getElementById("backToLoginButton")
+    .addEventListener("click", () => {
 
-    const email =
-        document.getElementById("email").value.trim();
+        registerPage.classList.add("hidden");
 
-    const password =
-        document.getElementById("password").value;
+        loginPage.classList.remove("hidden");
 
-    const error =
-        document.getElementById("loginError");
-
-
-    error.innerHTML = "";
+    });
 
 
-    try {
+document
+    .getElementById("loginButton")
+    .addEventListener("click", async () => {
 
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        const email =
+            document.getElementById("loginEmail").value.trim();
 
-    } catch (e) {
+        const password =
+            document.getElementById("loginPassword").value;
 
-        error.innerHTML =
-            `<div class="error">
-                Inloggen mislukt. Controleer je e-mailadres en wachtwoord.
-            </div>`;
-
-    }
-
-};
+        const message =
+            document.getElementById("loginMessage");
 
 
-window.registerUser = async function() {
-
-    const name =
-        document.getElementById("registerName").value.trim();
-
-    const email =
-        document.getElementById("registerEmail").value.trim();
-
-    const password =
-        document.getElementById("registerPassword").value;
-
-    const age =
-        Number(document.getElementById("registerAge").value);
-
-    const error =
-        document.getElementById("registerError");
+        message.innerHTML = "";
 
 
-    error.innerHTML = "";
+        try {
 
-
-    if (!name || !email || !password || !age) {
-
-        error.innerHTML =
-            `<div class="error">
-                Vul alle velden in.
-            </div>`;
-
-        return;
-
-    }
-
-
-    try {
-
-        const credential =
-            await createUserWithEmailAndPassword(
+            await signInWithEmailAndPassword(
                 auth,
                 email,
                 password
             );
 
+        } catch (error) {
 
-        await setDoc(
-            doc(db, "users", credential.user.uid),
-            {
-                naam: name,
-                email: email,
-                leeftijd: age,
-                rol: "medewerker",
-                aangemaaktOp: new Date()
-            }
-        );
+            message.innerHTML =
+                `<div class="error">
+                    Inloggen mislukt. Controleer je e-mailadres en wachtwoord.
+                </div>`;
 
+        }
 
-    } catch (e) {
-
-        error.innerHTML =
-            `<div class="error">
-                Account maken mislukt: ${e.message}
-            </div>`;
-
-    }
-
-};
+    });
 
 
-window.logout = async function() {
+document
+    .getElementById("registerButton")
+    .addEventListener("click", async () => {
 
-    await signOut(auth);
+        const name =
+            document.getElementById("registerName").value.trim();
 
-};
+        const email =
+            document.getElementById("registerEmail").value.trim();
+
+        const password =
+            document.getElementById("registerPassword").value;
+
+        const age =
+            Number(
+                document.getElementById("registerAge").value
+            );
+
+        const message =
+            document.getElementById("registerMessage");
+
+
+        message.innerHTML = "";
+
+
+        if (!name || !email || !password || !age) {
+
+            message.innerHTML =
+                `<div class="error">
+                    Vul alle velden in.
+                </div>`;
+
+            return;
+
+        }
+
+
+        if (password.length < 6) {
+
+            message.innerHTML =
+                `<div class="error">
+                    Je wachtwoord moet minimaal 6 tekens bevatten.
+                </div>`;
+
+            return;
+
+        }
+
+
+        try {
+
+            const credential =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            await setDoc(
+                doc(
+                    db,
+                    "users",
+                    credential.user.uid
+                ),
+                {
+                    naam: name,
+                    email: email,
+                    leeftijd: age,
+                    rol: "medewerker",
+                    aangemaaktOp:
+                        new Date().toISOString()
+                }
+            );
+
+
+            message.innerHTML =
+                `<div class="success">
+                    Account aangemaakt.
+                </div>`;
+
+
+        } catch (error) {
+
+            message.innerHTML =
+                `<div class="error">
+                    Account maken mislukt: ${error.message}
+                </div>`;
+
+        }
+
+    });
+
+
+document
+    .getElementById("logoutButton")
+    .addEventListener("click", async () => {
+
+        await signOut(auth);
+
+    });
 
 
 onAuthStateChanged(auth, async (user) => {
 
     if (!user) {
 
-        document
-            .getElementById("loginPage")
-            .classList.remove("hidden");
+        loginPage.classList.remove("hidden");
 
-        document
-            .getElementById("registerPage")
-            .classList.add("hidden");
+        registerPage.classList.add("hidden");
 
-        document
-            .getElementById("app")
-            .classList.add("hidden");
+        appPage.classList.add("hidden");
 
         return;
 
     }
 
 
-    const userDoc =
-        await getDoc(
-            doc(db, "users", user.uid)
-        );
+    const userReference =
+        doc(db, "users", user.uid);
+
+
+    const userSnapshot =
+        await getDoc(userReference);
 
 
     let userData = {};
 
 
-    if (userDoc.exists()) {
+    if (userSnapshot.exists()) {
 
-        userData = userDoc.data();
+        userData = userSnapshot.data();
 
     }
 
 
-    document
-        .getElementById("loginPage")
-        .classList.add("hidden");
+    loginPage.classList.add("hidden");
 
-    document
-        .getElementById("registerPage")
-        .classList.add("hidden");
+    registerPage.classList.add("hidden");
 
-    document
-        .getElementById("app")
-        .classList.remove("hidden");
+    appPage.classList.remove("hidden");
 
 
     document
         .getElementById("welcomeText")
         .textContent =
-        "Welkom, " + (userData.naam || "medewerker");
+        "Welkom, " +
+        (userData.naam || "medewerker");
 
 
     document
@@ -600,104 +558,6 @@ onAuthStateChanged(auth, async (user) => {
         (userData.rol || "medewerker");
 
 });
-
-
-window.showPage = function(page) {
-
-    document
-        .querySelectorAll("section")
-        .forEach(section => {
-            section.classList.add("hidden");
-        });
-
-
-    if (page !== "home") {
-
-        document
-            .getElementById(page)
-            .classList.remove("hidden");
-
-    }
-
-};
-
-
-window.startService = function() {
-
-    startTime = new Date();
-
-    document
-        .getElementById("serviceCard")
-        .classList.remove("hidden");
-
-
-    document
-        .getElementById("serviceStart")
-        .textContent =
-        startTime.toLocaleTimeString("nl-NL");
-
-
-    timerInterval =
-        setInterval(updateTimer, 1000);
-
-    updateTimer();
-
-};
-
-
-function updateTimer() {
-
-    if (!startTime) return;
-
-
-    const difference =
-        new Date() - startTime;
-
-
-    const hours =
-        Math.floor(
-            difference / 3600000
-        );
-
-
-    const minutes =
-        Math.floor(
-            (difference % 3600000) / 60000
-        );
-
-
-    const seconds =
-        Math.floor(
-            (difference % 60000) / 1000
-        );
-
-
-    document
-        .getElementById("timer")
-        .textContent =
-        String(hours).padStart(2, "0") +
-        ":" +
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(seconds).padStart(2, "0");
-
-};
-
-
-window.stopService = function() {
-
-    clearInterval(timerInterval);
-
-    alert("Dienst geregistreerd.");
-
-    startTime = null;
-
-    document
-        .getElementById("serviceCard")
-        .classList.add("hidden");
-
-};
-
 
 </script>
 
